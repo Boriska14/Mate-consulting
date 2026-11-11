@@ -95,6 +95,7 @@ export const VercelDeployGuideModal: React.FC<VercelDeployGuideModalProps> = ({ 
             <div className="font-bold text-[#153258] mb-1.5">Fichier vercel.json actif :</div>
             <pre className="font-mono text-[11px] bg-slate-900 text-slate-200 p-3 rounded-lg overflow-x-auto">
 {`{
+  "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",

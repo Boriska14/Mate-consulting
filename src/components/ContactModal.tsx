@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, Phone, Mail, MessageSquare, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { X, Calendar, Phone, Mail, MessageSquare, Send, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import { COMPANY_INFO } from '../data/mateData';
+import { trackEvent } from '../utils/analytics';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -12,31 +13,28 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  selectedOfferId = 'business',
+  selectedOfferId = 'daf',
   simulationData,
 }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [company, setCompany] = useState('');
-  const [offer, setOffer] = useState(selectedOfferId);
+  const [companySize, setCompanySize] = useState('tpe_1_9');
+  const [need, setNeed] = useState(selectedOfferId);
   const [message, setMessage] = useState('');
+  const [websiteTrap, setWebsiteTrap] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (selectedOfferId) {
-      setOffer(selectedOfferId);
+      setNeed(selectedOfferId);
     }
   }, [selectedOfferId]);
 
   useEffect(() => {
     if (simulationData) {
-      const currencyLabel = simulationData.currency === 'FCFA' ? 'FCFA' : '€ HT';
-      const budgetFormatted = simulationData.currency === 'FCFA'
-        ? `${Math.round(simulationData.monthlyBudget * 655.957).toLocaleString('fr-FR')} FCFA`
-        : `${simulationData.monthlyBudget.toLocaleString('fr-FR')} € HT`;
-
+      const budgetFormatted = `${simulationData.monthlyBudget.toLocaleString('fr-FR')} € HT`;
       setMessage(
         `Simulation : ${simulationData.companyType} avec un volume estimé de ${simulationData.hours}h/mois pour un budget estimé de ${budgetFormatted}/mois.`
       );
@@ -47,10 +45,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (websiteTrap) {
+      setSubmitted(true);
+      return;
+    }
+
     setSubmitting(true);
+    trackEvent('form_submit_start', { modal: true, need, companySize });
+
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
+      trackEvent('form_submit_success', { modal: true, email, need });
     }, 500);
   };
 
@@ -65,8 +71,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <Calendar className="w-5 h-5 text-[#E2672F]" />
             </div>
             <div>
-              <h3 className="text-lg font-black tracking-tight">Diagnostic Flash 30 min (Offert)</h3>
-              <p className="text-xs text-[#D9CDBB]">Échange confidentiel avec Ted Enrick MBILONGO</p>
+              <h3 className="text-lg font-black tracking-tight">Réserver un échange de 30 min (offert)</h3>
+              <p className="text-xs text-[#D9CDBB]">Échange direct & confidentiel avec Ted Enrick MBILONGO</p>
             </div>
           </div>
           <button
@@ -87,7 +93,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </div>
               <h4 className="text-xl font-bold text-[#0E1E37]">Votre demande est bien reçue !</h4>
               <p className="text-xs text-slate-600 mt-2 max-w-sm mx-auto leading-relaxed">
-                Merci {fullName}. Ted Enrick MBILONGO vous contactera sous 24h ouvrées pour confirmer votre créneau.
+                Merci {fullName}. Ted Enrick MBILONGO vous contactera sous 24h ouvrées à l’adresse {email} pour convenir de l’échange.
               </p>
               <button
                 onClick={() => {
@@ -101,27 +107,56 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
           ) : (
             <div>
+              {/* Calendly Direct Option */}
+              <div className="mb-4 p-3.5 rounded-xl bg-[#F6F1E9] border border-[#0E1E37]/10 flex items-center justify-between gap-3 text-xs">
+                <div>
+                  <div className="font-bold text-[#153258]">Accès direct à l’agenda :</div>
+                  <div className="text-[11px] text-slate-600">Choisissez votre créneau en 1 clic</div>
+                </div>
+                <a
+                  href={`mailto:${COMPANY_INFO.founder.email}?subject=R%C3%A9servation%20cr%C3%A9neau%20%C3%A9change%2030%20min%20-%20MATE%20Consulting`}
+                  onClick={() => trackEvent('calendly_click')}
+                  className="px-3.5 py-1.5 text-xs font-bold text-[#0E1E37] bg-white hover:bg-slate-50 border border-[#0E1E37]/15 rounded-lg flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                >
+                  <span>Agenda en ligne</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </div>
+
               {/* Direct Quick Channels Bar */}
-              <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="grid grid-cols-2 gap-3 mb-4">
                 <a
                   href={`tel:${COMPANY_INFO.founder.phone}`}
-                  className="p-3 rounded-xl bg-[#F6F1E9] hover:bg-[#ebdcc8] border border-[#0E1E37]/10 text-xs font-bold text-[#153258] flex items-center justify-center gap-2 transition-colors"
+                  onClick={() => trackEvent('phone_click')}
+                  className="p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-bold text-[#153258] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#C04A1A]" />
+                  <Phone className="w-3.5 h-3.5 text-[#C04A1A]" />
                   <span>{COMPANY_INFO.founder.phoneFormatted}</span>
                 </a>
                 <a
                   href={COMPANY_INFO.founder.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-800 flex items-center justify-center gap-2 transition-colors"
+                  onClick={() => trackEvent('whatsapp_click')}
+                  className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-800 flex items-center justify-center gap-2 transition-colors"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                   <span>WhatsApp direct</span>
                 </a>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-3.5">
+              <form onSubmit={handleSubmit} className="space-y-3">
+                {/* Honeypot */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    value={websiteTrap}
+                    onChange={(e) => setWebsiteTrap(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
@@ -130,23 +165,26 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     <input
                       type="text"
                       required
-                      placeholder="Jean Dupont"
+                      placeholder="Alexandre Martin"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
                     />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
-                      Société / Activité
+                      Taille de l'entreprise *
                     </label>
-                    <input
-                      type="text"
-                      placeholder="Nom de l'entreprise"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
-                    />
+                    <select
+                      value={companySize}
+                      onChange={(e) => setCompanySize(e.target.value)}
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white outline-none"
+                    >
+                      <option value="solo">Indépendant (0 sal.)</option>
+                      <option value="tpe_1_9">TPE (1 à 9 sal.)</option>
+                      <option value="pme_10_49">PME (10 à 49 sal.)</option>
+                      <option value="pme_50plus">PME (50+ sal.)</option>
+                    </select>
                   </div>
                 </div>
 
@@ -158,69 +196,68 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     <input
                       type="email"
                       required
-                      placeholder="jean@societe.fr"
+                      placeholder="alexandre@entreprise.fr"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
                     />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
-                      Téléphone mobile *
+                      Téléphone portable
                     </label>
                     <input
                       type="tel"
-                      required
                       placeholder="06 12 34 56 78"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#153258] outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
-                    Formule souhaitée
+                    Besoin prioritaire *
                   </label>
                   <select
-                    value={offer}
-                    onChange={(e) => setOffer(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs bg-white outline-none"
+                    value={need}
+                    onChange={(e) => setNeed(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white outline-none"
                   >
-                    <option value="essentiel">Formule 01 – Essentiel (25 à 35 €/h)</option>
-                    <option value="business">Formule 02 – Business (35 à 45 €/h - Recommandé)</option>
-                    <option value="performance">Formule 03 – Performance (45 à 60 €/h)</option>
-                    <option value="optimisation">Offre Spéciale – Automatisation & Excel VBA</option>
-                    <option value="diagnostic">Diagnostic Libre & Conseil</option>
+                    <option value="daf">Direction Financière (DAF) externalisée</option>
+                    <option value="tresorerie">Suivi de trésorerie glissante 12 semaines</option>
+                    <option value="precompta">Précomptabilité opérationnelle & tri pièces</option>
+                    <option value="modelisation">Matrices Excel VBA / Power BI sur-mesure</option>
+                    <option value="autre">Autre échange / Diagnostic préalable</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
-                    Précisions sur votre besoin ou volume
+                    Contexte ou questions (optionnel)
                   </label>
                   <textarea
-                    rows={3}
-                    placeholder="Précisez votre enjeu prioritaire..."
+                    rows={2}
+                    placeholder="Précisez votre volume de pièces ou votre enjeu..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs outline-none resize-none"
+                    className="w-full px-3 py-1.5 rounded-xl border border-slate-200 text-xs outline-none resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3.5 px-4 rounded-xl font-extrabold text-xs uppercase tracking-wider text-white bg-[#153258] hover:bg-[#0E1E37] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                  className="w-full py-3 px-4 rounded-xl font-extrabold text-xs uppercase tracking-wider text-white bg-[#153258] hover:bg-[#0E1E37] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
                 >
                   <Send className="w-4 h-4 text-[#E2672F]" />
-                  <span>{submitting ? 'Validation...' : 'Confirmer ma demande de diagnostic'}</span>
+                  <span>{submitting ? 'Envoi...' : 'Réserver mon échange de 30 min'}</span>
                 </button>
 
-                <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Vos données sont protégées par le secret professionnel.</span>
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-slate-500 pt-0.5">
+                  <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                  <span>Notification envoyée à l'équipe MATE Consulting ({COMPANY_INFO.founder.email}).</span>
                 </div>
               </form>
             </div>

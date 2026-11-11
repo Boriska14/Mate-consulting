@@ -3,19 +3,189 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MATE Consulting | Externalisation du Pilotage Financier & DAF TPE</title>
-    <meta name="description" content="Site vitrine officiel de MATE Consulting : DAF externalisé, précomptabilité opérationnelle, modélisation décisionnelle Excel et pilotage de la trésorerie pour TPE, startups et indépendants." />
-    <meta property="og:title" content="MATE Consulting | Externalisation du Pilotage Financier" />
-    <meta property="og:description" content="Votre gestion. Notre expertise. Votre performance. Conseil financier, précomptabilité et modélisation pour TPE et PME." />
+    
+    <!-- SEO Primary Tags (< 60 chars title, 140-155 chars description) -->
+    <title>DAF externalisé pour PME et TPE | MATE Consulting</title>
+    <meta
+      name="description"
+      content="Pilotez votre trésorerie et déléguez votre gestion financière sans recruter à temps plein. Réservez votre échange stratégique de 30 min offert."
+    />
+    <link rel="canonical" href="https://mateconsulting-pi.vercel.app/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- OpenGraph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mateconsulting-pi.vercel.app/" />
+    <meta property="og:title" content="DAF externalisé pour PME et TPE | MATE Consulting" />
+    <meta
+      property="og:description"
+      content="Pilotez votre trésorerie et déléguez votre gestion financière sans recruter à temps plein. Réservez votre échange stratégique de 30 min offert."
+    />
+    <meta property="og:image" content="https://mateconsulting-pi.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="MATE Consulting" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DAF externalisé pour PME et TPE | MATE Consulting" />
+    <meta
+      name="twitter:description"
+      content="Pilotez votre trésorerie et déléguez votre gestion financière sans recruter à temps plein. Réservez votre échange stratégique de 30 min offert."
+    />
+    <meta name="twitter:image" content="https://mateconsulting-pi.vercel.app/og-image.jpg" />
+
+    <!-- Performance: Google Fonts strictly 2 weights (400, 700) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org JSON-LD Structured Data: ProfessionalService & FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://mateconsulting-pi.vercel.app/#organization",
+          "name": "MATE Consulting",
+          "url": "https://mateconsulting-pi.vercel.app/",
+          "logo": "https://mateconsulting-pi.vercel.app/og-image.jpg",
+          "image": "https://mateconsulting-pi.vercel.app/og-image.jpg",
+          "description": "Direction Administrative et Financière (DAF) externalisée, précomptabilité opérationnelle, modélisation décisionnelle Excel et pilotage de la trésorerie.",
+          "email": "Contact@mateconsulting.fr",
+          "telephone": "+33623375474",
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "France"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Afrique francophone"
+            }
+          ],
+          "priceRange": "€€",
+          "founder": {
+            "@type": "Person",
+            "name": "Ted Enrick MBILONGO",
+            "jobTitle": "Fondateur & Consultant Senior en Pilotage Financier"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://mateconsulting-pi.vercel.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quelle est la différence entre MATE Consulting et un expert-comptable ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "MATE Consulting et votre expert-comptable sont complémentaires. MATE Consulting intervient en amont au quotidien (organisation, saisie précomptable, suivi de trésorerie glissant, relance des factures et tableaux de bord). Nous préparons des dossiers prêts pour l'expert-comptable, qui se concentre sur la révision, le bilan officiel et les déclarations certifiées."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est la durée d'engagement ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nos prestations sont 100% modulables et sans engagement de durée obligatoire. Le volume horaire peut être ajusté au mois le mois selon vos cycles d'activité."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quels outils utilisez-vous ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nous nous intégrons directement à vos outils existants : banques professionnelles (Qonto, banques traditionnelles), outils de précomptabilité (Ipaidthat, Pennylane, Tiime), ainsi que Microsoft Excel (matrices et macros VBA sans frais de licence additionnels) et Power BI."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment garantissez-vous la confidentialité des données financières ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La confidentialité est encadrée contractuellement par un accord de secret professionnel (NDA sur simple demande). Tous les flux d'informations et accès bancaires sont sécurisés."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quel est le délai de démarrage d'une mission ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dès validation de la proposition faisant suite à l'échange initial de 30 minutes, le démarrage opérationnel intervient sous 5 jours ouvrés."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment le devis et les tarifs sont-ils établis ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le devis est calibré sur-mesure au temps passé selon le volume mensuel de pièces, la fréquence de reporting et la complexité des outils nécessaires. Les forfaits et devis sont transparents et sans frais cachés."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-[#F6F1E9] text-[#0E1E37] antialiased selection:bg-[#C04A1A] selection:text-white">
-    <div id="root"></div>
+    <!-- Initial Semantic HTML for Crawlers & Pre-rendering (Replaced by React SPA hydration) -->
+    <div id="root">
+      <header>
+        <p>MATE Consulting · DAF externalisé et pilotage financier</p>
+        <nav aria-label="Navigation principale">
+          <a href="#services">Services</a>
+          <a href="#methode">Comment ça marche</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#contact">Réserver un échange de 30 min</a>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <h1>Votre gestion. Notre expertise. Votre performance.</h1>
+          <p>MATE Consulting est le DAF externalisé au format agile dédié aux TPE, startups, artisans et indépendants. De la précomptabilité opérationnelle (Qonto, Ipaidthat) à la modélisation décisionnelle sous Excel et Power BI, nous structurons vos finances et sécurisons votre trésorerie à coût maîtrisé.</p>
+          <a href="#contact">Réserver un échange de 30 min</a>
+          <a href="#services">Voir les offres</a>
+        </section>
+        <section id="services">
+          <h2>Nos Services de Direction Financière Externalisée</h2>
+          <article>
+            <h3>1. DAF Externalisé</h3>
+            <p><strong>Problème :</strong> Absence de direction financière interne pour analyser la rentabilité et orienter les décisions d'investissement.</p>
+            <p><strong>Livrable :</strong> Tableaux de bord de direction, suivi budgétaire, calcul du point mort et réunions d'orientation stratégique.</p>
+            <p><strong>Fréquence :</strong> Mensuelle ou trimestrielle.</p>
+            <p><strong>Cible :</strong> TPE et PME en structuration ou en forte croissance (5 à 50 salariés).</p>
+          </article>
+          <article>
+            <h3>2. Précomptabilité Opérationnelle</h3>
+            <p><strong>Problème :</strong> Pièces justificatives dispersées, perte de temps et allers-retours stressants avec le cabinet comptable.</p>
+            <p><strong>Livrable :</strong> Dossier précomptable ordonné, imputation des écritures, lettrage et transmission clé en main à l'expert-comptable.</p>
+            <p><strong>Fréquence :</strong> Hebdomadaire ou mensuelle.</p>
+            <p><strong>Cible :</strong> Indépendants, consultants, professions libérales et micro-entreprises.</p>
+          </article>
+          <article>
+            <h3>3. Pilotage de Trésorerie & DSO</h3>
+            <p><strong>Problème :</strong> Manque de visibilité sur les encaissements futurs, retards de paiement clients et risque d'impasse bancaire.</p>
+            <p><strong>Livrable :</strong> Plan de trésorerie glissant à 12 semaines, balance âgée des créances et relances clients amiables coordonnées.</p>
+            <p><strong>Fréquence :</strong> Suivi hebdomadaire continu.</p>
+            <p><strong>Cible :</strong> TPE, commerçants et PME ayant des flux commerciaux réguliers à sécuriser.</p>
+          </article>
+          <article>
+            <h3>4. Modélisation Décisionnelle & Outils Excel / Power BI</h3>
+            <p><strong>Problème :</strong> Outils rigides ou logiciels coûteux inadaptés aux besoins spécifiques de gestion.</p>
+            <p><strong>Livrable :</strong> Matrices Excel sur-mesure (VBA), calculateurs de marges et coûts de revient, tableaux interactifs Power BI sans licence coûteuse.</p>
+            <p><strong>Fréquence :</strong> Au projet ou mise à jour périodique.</p>
+            <p><strong>Cible :</strong> Entreprises souhaitant automatiser leurs outils et fiabiliser leurs marges.</p>
+          </article>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

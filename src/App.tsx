@@ -3,20 +3,25 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustBar } from './components/TrustBar';
 import { ServicesSection } from './components/ServicesSection';
+import { HowItWorksSection } from './components/HowItWorksSection';
 import { InteractivePricingSimulator } from './components/InteractivePricingSimulator';
 import { FinancialToolsPreview } from './components/FinancialToolsPreview';
-import { FounderSection } from './components/FounderSection';
 import { WhyUsComparison } from './components/WhyUsComparison';
-import { FaqSection } from './components/FaqSection';
+import { FounderSection } from './components/FounderSection';
 import { ContactSection } from './components/ContactSection';
+import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { LegalNoticeModal } from './components/LegalNoticeModal';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { VercelDeployGuideModal } from './components/VercelDeployGuideModal';
 
 export default function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [deployGuideOpen, setDeployGuideOpen] = useState(false);
-  const [selectedOfferId, setSelectedOfferId] = useState<string>('business');
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+  const [selectedOfferId, setSelectedOfferId] = useState<string>('daf');
   const [simulationData, setSimulationData] = useState<any>(null);
 
   const handleOpenContact = (offerId?: string) => {
@@ -34,13 +39,13 @@ export default function App() {
   const handleSendSimulation = (simData: any) => {
     setSimulationData(simData);
     if (simData.recommendedOffer.toLowerCase().includes('essentiel')) {
-      setSelectedOfferId('essentiel');
+      setSelectedOfferId('precompta');
     } else if (simData.recommendedOffer.toLowerCase().includes('performance')) {
-      setSelectedOfferId('performance');
+      setSelectedOfferId('daf');
     } else if (simData.recommendedOffer.toLowerCase().includes('optimisation')) {
-      setSelectedOfferId('optimisation');
+      setSelectedOfferId('modelisation');
     } else {
-      setSelectedOfferId('business');
+      setSelectedOfferId('tresorerie');
     }
     setContactModalOpen(true);
   };
@@ -55,41 +60,43 @@ export default function App() {
 
       {/* Main Page Flow */}
       <main className="flex-1">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section (H1 DAF externalisé + Subtitle + Primary CTA) */}
         <Hero onOpenContact={handleOpenContact} />
 
         {/* 2. Tool & Ecosystem Bar */}
         <TrustBar />
 
-        {/* 3. Catalog of Services & 3 Packages + Special Offer */}
+        {/* 3. Catalog of Services (DAF, Précompta, Trésorerie, Modélisation) */}
         <ServicesSection onSelectOffer={handleSelectOffer} />
 
-        {/* 4. Interactive Pricing & Workload Simulator */}
+        {/* 4. Section "Comment ça marche" (4 étapes) */}
+        <HowItWorksSection onOpenContact={handleOpenContact} />
+
+        {/* 5. Interactive Pricing Simulator */}
         <InteractivePricingSimulator onSendSimulation={handleSendSimulation} />
 
-        {/* 5. Live Operational Tools Preview (12-week cash flow, aging, breakeven) */}
+        {/* 6. Live Operational Tools Preview (12-week cash flow, aging, breakeven, Power BI) */}
         <FinancialToolsPreview />
 
-        {/* 6. Why MATE Consulting Comparison */}
+        {/* 7. Why MATE Consulting Comparison */}
         <WhyUsComparison />
 
-        {/* 7. Founder & Track Record (Ted Enrick MBILONGO) */}
+        {/* 8. Founder Section (Condensed 3-4 lines focusing on method & results) */}
         <FounderSection onOpenContact={handleOpenContact} />
 
-        {/* 8. Full Multi-channel Contact Section & 30-min Booking */}
-        <ContactSection
-          initialOffer={selectedOfferId}
-          initialHours={simulationData ? simulationData.hours : 16}
-        />
+        {/* 9. Contact & Appointment Section (Short form, honeypot, Calendly link) */}
+        <ContactSection initialOffer={selectedOfferId} />
 
-        {/* 9. Questions Fréquentes & Déontologie */}
-        <FaqSection />
+        {/* 10. FAQ (7 questions réelles) */}
+        <FaqSection onOpenContact={() => handleOpenContact('diagnostic')} />
       </main>
 
-      {/* Footer */}
+      {/* Footer with Legal & Privacy Modal Triggers */}
       <Footer
         onOpenContact={handleOpenContact}
         onOpenDeployGuide={() => setDeployGuideOpen(true)}
+        onOpenLegal={() => setLegalModalOpen(true)}
+        onOpenPrivacy={() => setPrivacyModalOpen(true)}
       />
 
       {/* Interactive Modals */}
@@ -98,6 +105,16 @@ export default function App() {
         onClose={() => setContactModalOpen(false)}
         selectedOfferId={selectedOfferId}
         simulationData={simulationData}
+      />
+
+      <LegalNoticeModal
+        isOpen={legalModalOpen}
+        onClose={() => setLegalModalOpen(false)}
+      />
+
+      <PrivacyPolicyModal
+        isOpen={privacyModalOpen}
+        onClose={() => setPrivacyModalOpen(false)}
       />
 
       <VercelDeployGuideModal

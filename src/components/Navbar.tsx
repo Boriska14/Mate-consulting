@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MateLogo } from './MateLogo';
 import { Phone, Calendar, Menu, X, Rocket, MessageSquare, Mail, ShieldCheck, ChevronRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/mateData';
+import { trackEvent } from '../utils/analytics';
 
 interface NavbarProps {
   onOpenContact: (mode?: 'diagnostic' | 'message') => void;
@@ -19,6 +20,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleCta = () => {
+    trackEvent('cta_nav_click');
+    onOpenContact('diagnostic');
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -39,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
             </span>
             <span className="hidden md:inline text-slate-400" aria-hidden="true">|</span>
             <span className="hidden md:inline text-slate-300">
-              Cabinet basé à Paris · Interventions France & International
+              France & Afrique francophone (Interventions à distance et sur site en Île-de-France)
             </span>
           </div>
 
@@ -59,6 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               href={COMPANY_INFO.founder.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('whatsapp_click')}
               className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition-colors"
             >
               <MessageSquare className="w-3 h-3" />
@@ -67,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
 
             <button
               onClick={onOpenDeployGuide}
-              className="hidden lg:flex items-center gap-1 text-[#E2672F] hover:text-white transition-colors font-semibold"
+              className="hidden lg:flex items-center gap-1 text-[#E2672F] hover:text-white transition-colors font-semibold cursor-pointer"
             >
               <Rocket className="w-3 h-3" />
               <span>Vercel Ready</span>
@@ -93,23 +100,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               className="flex items-center gap-2 group transition-transform active:scale-98 whitespace-nowrap shrink-0"
               aria-label="Accueil MATE Consulting"
             >
-              <MateLogo size="md" variant="light" />
+              <MateLogo size="md" variant="light" showSubtitle={true} />
             </a>
 
             {/* Zone 2: Navigation Links (Clean, Editorial, Interactive Hover) */}
-            <nav className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-[#153258]">
+            <nav className="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-[#153258]">
               <a
-                href="#offres"
+                href="#services"
                 className="relative py-1 hover:text-[#C04A1A] transition-colors whitespace-nowrap shrink-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#C04A1A] hover:after:w-full after:transition-all"
               >
-                Nos 3 Formules
+                Services
+              </a>
+
+              <a
+                href="#methode"
+                className="relative py-1 hover:text-[#C04A1A] transition-colors whitespace-nowrap shrink-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#C04A1A] hover:after:w-full after:transition-all"
+              >
+                Comment ça marche
               </a>
 
               <a
                 href="#simulateur"
                 className="relative py-1 hover:text-[#C04A1A] transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#C04A1A] hover:after:w-full after:transition-all"
               >
-                <span>Simulateur Budget</span>
+                <span>Simulateur</span>
                 <span className="text-[9px] font-mono font-bold bg-[#C04A1A]/10 text-[#C04A1A] px-1.5 py-0.5 rounded">
                   Live
                 </span>
@@ -120,13 +134,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
                 className="relative py-1 hover:text-[#C04A1A] transition-colors whitespace-nowrap shrink-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#C04A1A] hover:after:w-full after:transition-all"
               >
                 Matrices Excel & Power BI
-              </a>
-
-              <a
-                href="#fondateur"
-                className="relative py-1 hover:text-[#C04A1A] transition-colors whitespace-nowrap shrink-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#C04A1A] hover:after:w-full after:transition-all"
-              >
-                L'Expertise
               </a>
 
               <a
@@ -143,8 +150,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               {/* Direct Click-to-Call Phone Button */}
               <a
                 href={`tel:${COMPANY_INFO.founder.phone}`}
+                onClick={() => trackEvent('phone_click')}
                 className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-[#153258] bg-white hover:bg-slate-50 border border-[#0E1E37]/15 rounded-xl transition-all shadow-2xs whitespace-nowrap shrink-0 group"
-                title="Appeler directement le consultant"
+                title="Appeler directement le cabinet"
               >
                 <div className="w-5 h-5 rounded-md bg-[#C04A1A]/10 text-[#C04A1A] flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Phone className="w-3 h-3" />
@@ -152,23 +160,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
                 <span className="font-mono tabular-nums">{COMPANY_INFO.founder.phoneFormatted}</span>
               </a>
 
-              {/* Primary Action Button (Flash Diagnostic 30 min) */}
+              {/* Primary Action Button ("Réserver un échange de 30 min") */}
               <button
-                onClick={() => onOpenContact('diagnostic')}
+                onClick={handleCta}
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider text-white bg-[#153258] hover:bg-[#0E1E37] active:scale-[0.98] rounded-xl transition-all shadow-md whitespace-nowrap shrink-0 cursor-pointer border border-[#153258]"
               >
                 <Calendar className="w-3.5 h-3.5 text-[#E2672F]" />
-                <span>Diagnostic 30 min Offert</span>
+                <span>Réserver un échange de 30 min</span>
               </button>
             </div>
 
             {/* Mobile Actions Hamburger */}
             <div className="flex lg:hidden items-center gap-2">
               <button
-                onClick={() => onOpenContact('diagnostic')}
+                onClick={handleCta}
                 className="sm:hidden px-3 py-1.5 text-xs font-bold text-white bg-[#153258] rounded-lg shadow-xs"
               >
-                Diagnostic
+                Échange 30 min
               </button>
               
               <button
@@ -189,11 +197,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
         <div className="lg:hidden bg-[#F6F1E9] border-b border-[#0E1E37]/15 px-5 pt-4 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-2 text-sm font-bold text-[#153258]">
             <a
-              href="#offres"
+              href="#services"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 px-3 hover:bg-white rounded-xl transition-colors"
             >
-              <span>Nos 3 Formules d’Accompagnement</span>
+              <span>Nos 4 Services DAF & Précompta</span>
+              <ChevronRight className="w-4 h-4 text-slate-400" />
+            </a>
+
+            <a
+              href="#methode"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between py-2.5 px-3 hover:bg-white rounded-xl transition-colors"
+            >
+              <span>Comment ça marche (4 étapes)</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </a>
 
@@ -219,15 +236,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
             </a>
 
             <a
-              href="#fondateur"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between py-2.5 px-3 hover:bg-white rounded-xl transition-colors"
-            >
-              <span>L’Expertise de Ted Enrick MBILONGO</span>
-              <ChevronRight className="w-4 h-4 text-slate-400" />
-            </a>
-
-            <a
               href="#faq"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 px-3 hover:bg-white rounded-xl transition-colors"
@@ -241,17 +249,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenContact('diagnostic');
+                  handleCta();
                 }}
                 className="w-full flex items-center justify-center gap-2.5 py-3 text-xs font-extrabold uppercase tracking-wider text-white bg-[#153258] rounded-xl shadow-md"
               >
                 <Calendar className="w-4 h-4 text-[#E2672F]" />
-                <span>Réserver un Diagnostic (30 min offert)</span>
+                <span>Réserver un échange de 30 min (offert)</span>
               </button>
 
               <div className="grid grid-cols-2 gap-2 text-xs font-bold">
                 <a
                   href={`tel:${COMPANY_INFO.founder.phone}`}
+                  onClick={() => trackEvent('phone_click')}
                   className="flex items-center justify-center gap-2 py-2.5 text-[#153258] bg-white border border-slate-200 rounded-xl"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#C04A1A]" />
@@ -262,6 +271,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
                   href={COMPANY_INFO.founder.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent('whatsapp_click')}
                   className="flex items-center justify-center gap-2 py-2.5 text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
@@ -274,10 +284,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
                   setMobileMenuOpen(false);
                   onOpenDeployGuide();
                 }}
-                className="w-full py-2 text-xs font-medium text-slate-600 hover:text-[#153258] flex items-center justify-center gap-1.5"
+                className="w-full py-2 text-xs font-medium text-slate-600 hover:text-[#153258] flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Rocket className="w-3.5 h-3.5 text-[#C04A1A]" />
-                <span>Consulter le guide de déploiement Vercel</span>
+                <span>Guide de déploiement Vercel</span>
               </button>
             </div>
           </div>

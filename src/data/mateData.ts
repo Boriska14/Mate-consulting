@@ -12,7 +12,7 @@ export const COMPANY_INFO = {
     title: 'Fondateur & Consultant Senior en Pilotage Financier',
     phone: '+33 6 23 37 54 74',
     phoneFormatted: '06 23 37 54 74',
-    email: 'ayinaenrick@gmail.com',
+    email: 'Contact@mateconsulting.fr',
     location: 'Paris, France (Interventions à distance et sur site en Île-de-France)',
     whatsappUrl: 'https://wa.me/33623375474?text=Bonjour%20Ted,%20je%20souhaite%20%C3%A9changer%20sur%20un%20accompagnement%20MATE%20Consulting.',
     degrees: [

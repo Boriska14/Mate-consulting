@@ -1,6 +1,6 @@
 {
-  "name": "MATE Consulting | Externalisation du Pilotage Financier & DAF TPE",
-  "description": "Site vitrine officiel de MATE Consulting : DAF externalisé, précomptabilité opérationnelle, modélisation décisionnelle Excel et pilotage de la trésorerie pour TPE, startups et indépendants.",
+  "name": "DAF externalisé pour PME et TPE | MATE Consulting",
+  "description": "Pilotez votre trésorerie et déléguez votre gestion financière sans recruter à temps plein. Réservez votre échange stratégique de 30 min offert.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

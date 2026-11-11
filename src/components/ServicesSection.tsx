@@ -1,191 +1,242 @@
 import React, { useState } from 'react';
-import { OFFERS, SPECIAL_OFFER } from '../data/mateData';
-import { OfferPackage } from '../types';
-import { Check, ArrowRight, Sparkles, Clock, FileCheck, Layers, ChevronDown, ChevronUp, CheckCircle, Database } from 'lucide-react';
+import { ArrowRight, Clock, FileCheck, Layers, ChevronDown, ChevronUp, CheckCircle, Database, HelpCircle, Calendar, Sparkles } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 
 interface ServicesSectionProps {
   onSelectOffer: (offerId: string) => void;
 }
 
-export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectOffer }) => {
-  const [expandedOffer, setExpandedOffer] = useState<string | null>('business');
-  const [activeUseCase, setActiveUseCase] = useState<number>(0);
+interface ServiceCard {
+  id: string;
+  number: string;
+  title: string;
+  category: string;
+  problem: string;
+  deliverables: string[];
+  frequency: string;
+  target: string;
+  rateHint: string;
+  budgetHint: string;
+  popular?: boolean;
+}
 
-  const useCases = [
+export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectOffer }) => {
+  const [expandedId, setExpandedId] = useState<string | null>('daf');
+
+  const services: ServiceCard[] = [
     {
-      title: 'Matrice de Coûts de Revient & Prix de Vente (Excel)',
-      desc: 'Simulateur automatisé pour fixer vos grilles tarifaires et préserver votre marge brute sur chaque prestation.',
-      tech: 'Excel Avancé + Formules dynamiques',
+      id: 'daf',
+      number: '01',
+      title: 'DAF Externalisé & Pilotage Stratégique',
+      category: 'Direction Financière à Temps Partagé',
+      problem:
+        'Vous manquez de recul financier pour piloter vos marges, modéliser vos recrutements ou préparer vos dossiers d’investissement auprès des banques.',
+      deliverables: [
+        'Tableaux de bord de direction personnalisés avec indicateurs clés (KPIs)',
+        'Budget prévisionnel annuel et suivi des écarts réel vs prévisionnel',
+        'Calcul du seuil de rentabilité (point mort) en chiffre d’affaires et en volume',
+        'Réunions périodiques d’arbitrage décisionnel avec le dirigeant',
+      ],
+      frequency: 'Mensuelle ou trimestrielle (15h à 40h / mois selon vos besoins)',
+      target: 'TPE et PME en structuration ou en forte croissance (5 à 50 salariés)',
+      rateHint: '45 à 60 € HT / h ou forfait mensuel sur devis',
+      budgetHint: 'Dès 675 € HT / mois (forfait 15h)',
+      popular: true,
     },
     {
-      title: 'Plan de Trésorerie Glissant 12 Semaines (VBA)',
-      desc: 'Macro d’importation automatique de vos relevés de comptes bancaires avec alertes instantanées de découvert.',
-      tech: 'VBA Macros + Connexion API bancaire',
+      id: 'precompta',
+      number: '02',
+      title: 'Précomptabilité Opérationnelle & Gestion Administrative',
+      category: 'Secrétariat Financier & Organisation',
+      problem:
+        'La gestion des justificatifs, le tri des factures et les relances de votre expert-comptable génèrent une charge mentale quotidienne et des retards déclaratifs.',
+      deliverables: [
+        'Collecte, classement chronologique et numérisation des pièces justificatives',
+        'Saisie préparatoire et affectation des opérations sur vos outils (Qonto, Ipaidthat, Pennylane)',
+        'Rapprochements bancaires exhaustifs et lettrage régulier',
+        'Transmission de dossiers de clôture complets et ordonnés à l’expert-comptable',
+      ],
+      frequency: 'Hebdomadaire ou mensuelle (5h à 20h / mois)',
+      target: 'Indépendants, consultants, professions libérales et micro-entreprises',
+      rateHint: '25 à 35 € HT / h selon volumétrie de pièces',
+      budgetHint: 'Dès 125 € HT / mois (forfait 5h)',
     },
     {
-      title: 'Dashboard de Direction & KPIs Commerciaux (Power BI)',
-      desc: 'Visualisation graphique interactive de la rentabilité, du DSO et du panier moyen pour vos réunions d’associés.',
-      tech: 'Microsoft Power BI + Modélisation DAX',
+      id: 'tresorerie',
+      number: '03',
+      title: 'Pilotage de Trésorerie & Gestion du Poste Clients',
+      category: 'Sécurisation des Liquidités & DSO',
+      problem:
+        'Vous subissez des tensions de trésorerie imprévues, des retards de paiement clients qui s’accumulent et une absence de visibilité à 3 mois.',
+      deliverables: [
+        'Plan de trésorerie glissant à 12 semaines mis à jour continuellement',
+        'Balance âgée des créances clients et classement par ancienneté de retard',
+        'Relances clients amiables, graduelles et professionnelles (téléphone & email)',
+        'Préparation et ordonnancement des propositions de paiement fournisseurs',
+      ],
+      frequency: 'Suivi hebdomadaire continu et point d’alerte en direct',
+      target: 'TPE, commerçants et PME ayant des flux commerciaux réguliers à sécuriser',
+      rateHint: '35 à 45 € HT / h',
+      budgetHint: 'Dès 350 € HT / mois (forfait 10h)',
+    },
+    {
+      id: 'modelisation',
+      number: '04',
+      title: 'Modélisation Décisionnelle & Outils Excel / Power BI',
+      category: 'Ingénierie des Données & Automatisation',
+      problem:
+        'Vos calculs de prix de revient sont manuels et sources d’erreurs, et les logiciels ERP du marché sont trop coûteux et surdimensionnés.',
+      deliverables: [
+        'Matrices de gestion automatisées sous Excel avec macros VBA pérennes (0 € de licence logicielle tierce)',
+        'Simulateurs de coûts de revient et calculateurs de prix de vente optimisés',
+        'Tableaux de bord interactifs connectés sous Microsoft Power BI',
+        'Documentation technique complète et formation à la prise en main',
+      ],
+      frequency: 'Intervention au projet (forfait) ou mission dédiée',
+      target: 'Entreprises souhaitant automatiser leurs outils et fiabiliser leurs marges',
+      rateHint: '50 à 80 € HT / h ou forfait au projet sur diagnostic',
+      budgetHint: 'Devis sur-mesure selon complexité de la matrice',
     },
   ];
 
   const toggleExpand = (id: string) => {
-    setExpandedOffer(expandedOffer === id ? null : id);
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  const handleCta = (serviceId: string) => {
+    trackEvent('cta_services_click', { serviceId });
+    onSelectOffer(serviceId);
   };
 
   return (
-    <section id="offres" className="py-20 md:py-28 bg-[#F6F1E9] border-b border-[#0E1E37]/10 relative">
+    <section id="services" className="py-20 md:py-28 bg-[#F6F1E9] border-b border-[#0E1E37]/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#C04A1A] mb-3">
             <Layers className="w-3.5 h-3.5" />
-            <span>Offres & Formules d'Accompagnement</span>
+            <span>Offres de Services Dédiées aux Dirigeants</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0E1E37] tracking-tight [text-wrap:balance]">
-            Trois formules modulaires et une offre d’ingénierie sur-mesure
+            Quatre expertises concrètes pour piloter votre performance
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#153258]/85 leading-relaxed font-normal">
-            À la différence des forfaits génériques rigides, MATE Consulting adapte son volume d’intervention
-            et son niveau d’expertise à vos cycles réels d’activité. Vous ne payez que le temps utile.
+            Chaque accompagnement répond à un problème opérationnel précis, avec des livrables concrets
+            et une cadence adaptée à votre rythme d’activité.
           </p>
         </div>
 
-        {/* 3 Core Subscription Packages */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-16">
-          {OFFERS.map((offer: OfferPackage, index) => {
-            const isBusiness = offer.id === 'business';
-            const isExpanded = expandedOffer === offer.id;
-            const stepNumber = String(index + 1).padStart(2, '0');
+        {/* 4 Structured Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-16">
+          {services.map((svc) => {
+            const isExpanded = expandedId === svc.id;
 
             return (
               <div
-                key={offer.id}
-                className={`relative rounded-3xl flex flex-col transition-all duration-300 ${
-                  isBusiness
-                    ? 'bg-white border-2 border-[#153258] shadow-2xl ring-4 ring-[#153258]/10 lg:-translate-y-2'
-                    : 'bg-white border border-[#0E1E37]/15 shadow-sm hover:shadow-md'
+                key={svc.id}
+                className={`rounded-3xl bg-white border p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 shadow-sm ${
+                  svc.popular
+                    ? 'border-2 border-[#153258] shadow-lg ring-4 ring-[#153258]/5'
+                    : 'border-[#0E1E37]/15 hover:shadow-md'
                 }`}
               >
-                {/* Visual marker badge for flagship offer */}
-                {offer.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#C04A1A] text-white text-[11px] font-extrabold uppercase tracking-widest py-1.5 px-4 rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap">
-                    <Sparkles className="w-3 h-3 text-amber-200" />
-                    <span>{offer.badge || 'Formule Recommandée TPE'}</span>
-                  </div>
-                )}
-
-                <div className="p-6 sm:p-8 flex-1 flex flex-col">
-                  {/* Step & Title */}
-                  <div className="pb-5 border-b border-slate-100">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold tracking-wider text-[#5B84B1]">
-                        FORMULE {stepNumber}
+                <div>
+                  {/* Top Header */}
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <div>
+                      <span className="text-xs font-mono font-bold text-[#5B84B1] uppercase tracking-wider">
+                        SERVICE {svc.number}
                       </span>
-                      {isBusiness && (
-                        <span className="text-[10px] font-bold uppercase text-[#C04A1A] tracking-wider">
-                          Cœur d'expertise
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="text-2xl font-extrabold text-[#0E1E37] mt-1 tracking-tight">
-                      {offer.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-[#C04A1A] mt-1">
-                      {offer.subtitle}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-2 italic leading-relaxed">
-                      Cible : {offer.target}
-                    </p>
-                  </div>
-
-                  {/* Pricing Block */}
-                  <div className="my-6 p-5 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/10 flex flex-col justify-between">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                        Taux horaire
-                      </span>
-                      <span className="text-2xl font-black text-[#153258] font-mono tabular-nums">
-                        {offer.hourlyRate}
-                      </span>
-                    </div>
-
-                    <div className="flex items-baseline justify-between mt-3 pt-3 border-t border-[#0E1E37]/10 text-xs">
-                      <span className="font-medium text-slate-600 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#C04A1A]" />
-                        Temps préconisé
-                      </span>
-                      <span className="font-bold text-[#0E1E37] font-mono tabular-nums">
-                        {offer.monthlyHours}
-                      </span>
-                    </div>
-
-                    <div className="flex items-baseline justify-between mt-2 text-xs">
-                      <span className="text-slate-600">Budget mensuel estimé</span>
-                      <span className="font-extrabold text-[#C04A1A] font-mono tabular-nums">
-                        {offer.recommendedBudget}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Objective */}
-                  <p className="text-xs sm:text-sm text-[#153258]/90 leading-relaxed mb-6 font-normal">
-                    {offer.objective}
-                  </p>
-
-                  {/* Main Domains list */}
-                  <div className="space-y-3 mb-6 flex-1">
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#153258]">
-                      Prestations Clés Incluses :
-                    </div>
-                    {offer.domains.slice(0, isExpanded ? offer.domains.length : 3).map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-[#0E1E37]">
-                        <CheckCircle className="w-4 h-4 text-[#C04A1A] shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="font-bold text-[#153258]">{item.domain} :</strong>{' '}
-                          <span className="text-slate-600 leading-relaxed">{item.details}</span>
-                        </div>
+                      <div className="text-[11px] font-bold text-[#C04A1A] uppercase tracking-wide mt-0.5">
+                        {svc.category}
                       </div>
-                    ))}
+                    </div>
+                    {svc.popular && (
+                      <span className="bg-[#153258] text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-full">
+                        Formule Recommandée
+                      </span>
+                    )}
                   </div>
 
-                  {/* Expand button */}
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-black text-[#0E1E37] mt-4 mb-3 tracking-tight">
+                    {svc.title}
+                  </h3>
+
+                  {/* Problem & Target */}
+                  <div className="space-y-3 mb-5 text-xs text-slate-700">
+                    <div className="p-3.5 rounded-xl bg-rose-50/70 border border-rose-100">
+                      <strong className="text-rose-900 block font-bold mb-1">
+                        Le problème que nous résolvons :
+                      </strong>
+                      <span className="text-rose-800 leading-relaxed">{svc.problem}</span>
+                    </div>
+
+                    <div className="flex items-baseline gap-1.5 text-slate-600">
+                      <span className="font-bold text-[#153258]">Public concerné :</span>
+                      <span>{svc.target}</span>
+                    </div>
+
+                    <div className="flex items-baseline gap-1.5 text-slate-600">
+                      <span className="font-bold text-[#153258]">Fréquence :</span>
+                      <span>{svc.frequency}</span>
+                    </div>
+                  </div>
+
+                  {/* Pricing and Quote Hint */}
+                  <div className="p-4 rounded-xl bg-[#F6F1E9] border border-[#0E1E37]/10 mb-5 flex items-center justify-between text-xs">
+                    <div>
+                      <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-bold">
+                        Tarification indicative
+                      </span>
+                      <span className="font-bold text-[#153258] font-mono">
+                        {svc.rateHint}
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-bold">
+                        Budget mensuel
+                      </span>
+                      <span className="font-extrabold text-[#C04A1A] font-mono">
+                        {svc.budgetHint}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Deliverables toggle */}
                   <button
-                    onClick={() => toggleExpand(offer.id)}
-                    className="flex items-center justify-between text-xs font-bold text-[#153258] hover:text-[#C04A1A] py-2.5 border-t border-slate-100 transition-colors mb-4 cursor-pointer"
+                    onClick={() => toggleExpand(svc.id)}
+                    className="w-full flex items-center justify-between text-xs font-bold text-[#153258] hover:text-[#C04A1A] py-2 border-t border-slate-100 transition-colors cursor-pointer"
                   >
-                    <span>{isExpanded ? 'Masquer le détail complet' : 'Voir l’intégralité des prestations & livrables'}</span>
+                    <span className="flex items-center gap-1.5">
+                      <FileCheck className="w-4 h-4 text-[#C04A1A]" />
+                      <span>{isExpanded ? 'Masquer les livrables' : 'Voir les livrables concrets garantis'}</span>
+                    </span>
                     {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
 
-                  {/* Expanded Deliverables Drawer */}
                   {isExpanded && (
-                    <div className="mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-2.5 animate-in fade-in duration-200">
-                      <div className="font-bold text-[#153258] flex items-center gap-2">
-                        <FileCheck className="w-4 h-4 text-[#C04A1A]" />
-                        <span>Livrables documentaires garantis :</span>
-                      </div>
-                      <ul className="list-disc list-inside space-y-1.5 text-slate-700 pl-1">
-                        {offer.deliverables.map((deliv, dIdx) => (
+                    <div className="mt-3 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2 animate-in fade-in duration-200">
+                      <div className="font-bold text-[#153258]">Livrables concrets livrés à chaque échéance :</div>
+                      <ul className="list-disc list-inside space-y-1.5 text-slate-700">
+                        {svc.deliverables.map((deliv, dIdx) => (
                           <li key={dIdx} className="leading-snug">{deliv}</li>
                         ))}
                       </ul>
                     </div>
                   )}
+                </div>
 
-                  {/* Primary CTA for Offer */}
+                {/* Primary CTA */}
+                <div className="mt-6 pt-5 border-t border-slate-100">
                   <button
-                    onClick={() => onSelectOffer(offer.id)}
-                    className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs tracking-wider uppercase transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
-                      isBusiness
-                        ? 'bg-[#153258] hover:bg-[#0E1E37] text-white ring-2 ring-[#153258]/30'
-                        : 'bg-white hover:bg-slate-100 text-[#153258] border border-[#153258]'
-                    }`}
+                    onClick={() => handleCta(svc.id)}
+                    className="w-full py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-[#153258] hover:bg-[#0E1E37] active:scale-98 transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer"
                   >
-                    <span>Choisir cette formule</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <Calendar className="w-4 h-4 text-[#E2672F]" />
+                    <span>Réserver un échange de 30 min</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#D9CDBB]" />
                   </button>
                 </div>
               </div>
@@ -193,104 +244,30 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectOffer 
           })}
         </div>
 
-        {/* Special Offer: Optimisation & Automatisation (Refined Visual Dark Card) */}
-        <div className="rounded-3xl bg-gradient-to-br from-[#0E1E37] via-[#153258] to-[#0A1628] text-white p-8 sm:p-10 lg:p-12 shadow-2xl border border-white/10 relative overflow-hidden">
-          {/* Subtle geometric pattern backdrop */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-5 bg-[radial-gradient(#E2672F_2px,transparent_2px)] [background-size:24px_24px] pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#E2672F] mb-3">
-                <Sparkles className="w-4 h-4" />
-                <span>Offre Spéciale Ponctuelle ou en Complément</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
-                {SPECIAL_OFFER.name}
-              </h3>
-              <p className="text-sm sm:text-base text-[#D9CDBB] mt-2 font-medium">
-                {SPECIAL_OFFER.subtitle}
-              </p>
-              <p className="text-xs sm:text-sm text-slate-300 mt-4 leading-relaxed max-w-2xl">
-                {SPECIAL_OFFER.objective} Évitez les logiciels ERP surdimensionnés et coûteux :
-                nous développons des outils robustes sous Microsoft Excel et Power BI directement
-                intégrés à votre quotidien.
-              </p>
-
-              {/* Interactive Showcase Tabs for special offer */}
-              <div className="mt-8">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#D9CDBB] mb-3 flex items-center gap-1.5">
-                  <Database className="w-3.5 h-3.5 text-[#E2672F]" />
-                  <span>Exemples de livrables sur-mesure développés :</span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
-                  {useCases.map((uc, uIdx) => (
-                    <button
-                      key={uIdx}
-                      type="button"
-                      onClick={() => setActiveUseCase(uIdx)}
-                      className={`text-left p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${
-                        activeUseCase === uIdx
-                          ? 'bg-white text-[#0E1E37] border-white font-bold shadow-md'
-                          : 'bg-white/10 text-slate-200 border-white/10 hover:bg-white/15'
-                      }`}
-                    >
-                      <div className="truncate">{uc.title.split('(')[0]}</div>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="p-4 rounded-xl bg-white/10 border border-white/15 text-xs">
-                  <div className="font-bold text-[#E2672F]">{useCases[activeUseCase].title}</div>
-                  <div className="text-slate-300 mt-1">{useCases[activeUseCase].desc}</div>
-                  <div className="text-[11px] text-[#D9CDBB] font-mono mt-2 flex items-center gap-1">
-                    <span>Technologies :</span>
-                    <strong className="text-white">{useCases[activeUseCase].tech}</strong>
-                  </div>
-                </div>
-              </div>
+        {/* Transparent Quote / Devis Policy Box */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#0E1E37]/15 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C04A1A] mb-1">
+              <HelpCircle className="w-4 h-4" />
+              <span>Modalités d'établissement du devis</span>
             </div>
-
-            <div className="lg:col-span-5 bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#D9CDBB] block">
-                  Modalité d’intervention
-                </span>
-                <div className="text-2xl font-black text-white mt-1">
-                  Sur Devis ou Régie Dédiée
-                </div>
-                <div className="text-lg font-mono text-[#E2672F] mt-1 font-bold">
-                  {SPECIAL_OFFER.hourlyRate}
-                </div>
-                <p className="text-xs text-slate-300 mt-3 leading-relaxed">
-                  Audit préalable gratuit de vos fichiers actuels (Excel, exports bancaires)
-                  suivi d’une proposition clé en main avec engagement de résultat.
-                </p>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-white/15 space-y-3">
-                <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Aucun abonnement logiciel mensuel additionnel</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Code VBA et formules 100% commentés et transmis</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-slate-200">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Formation et accompagnement à la prise en main</span>
-                </div>
-
-                <button
-                  onClick={() => onSelectOffer('optimisation')}
-                  className="w-full mt-4 py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider text-[#0E1E37] bg-white hover:bg-[#F6F1E9] active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
-                >
-                  <Layers className="w-4 h-4 text-[#C04A1A]" />
-                  <span>Demander un Diagnostic Automatisation</span>
-                </button>
-              </div>
-            </div>
+            <h4 className="text-lg font-bold text-[#0E1E37]">
+              Comment votre devis personnalisé est-il établi ?
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              Nos propositions sont établies au temps passé sans aucun forfait universel forcé.
+              Après votre échange initial de 30 minutes, nous calibrons le volume d’heures mensuel exact
+              en fonction du volume de vos factures, de vos comptes bancaires et de la fréquence de reporting souhaitée.
+              Si vos besoins évoluent, le forfait s’adapte d’un mois sur l’autre sans pénalité.
+            </p>
           </div>
+          
+          <button
+            onClick={() => handleCta('devis')}
+            className="w-full md:w-auto px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[#153258] bg-[#F6F1E9] hover:bg-slate-200 rounded-xl transition-all border border-[#0E1E37]/15 whitespace-nowrap cursor-pointer shrink-0"
+          >
+            Demander mon estimation
+          </button>
         </div>
 
       </div>

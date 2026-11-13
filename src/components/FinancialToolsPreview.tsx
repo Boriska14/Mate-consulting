@@ -11,29 +11,29 @@ export const FinancialToolsPreview: React.FC = () => {
   const breakEvenCA = Math.round(fixedCosts / (marginRate / 100));
 
   return (
-    <section id="outils" className="py-20 md:py-28 bg-[#F6F1E9] border-b border-[#0E1E37]/10 relative">
+    <section id="outils" className="py-10 md:py-14 bg-[#F6F1E9] border-b border-[#0E1E37]/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#C04A1A] mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-6 md:mb-8">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#C04A1A] mb-2">
             <FileSpreadsheet className="w-4 h-4" />
             <span>Savoir-Faire Opérationnel & Modélisation</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0E1E37] tracking-tight [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl md:text-[2.65rem] font-extrabold text-[#0E1E37] tracking-tight leading-tight [text-wrap:balance]">
             Matrices de gestion automatisées & tableaux de bord
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#153258]/85 leading-relaxed font-normal">
+          <p className="mt-2.5 text-sm sm:text-base text-[#153258]/85 leading-relaxed font-normal">
             Découvrez concrètement les outils délivrés à nos clients : prévisionnels glissants,
             balances âgées dynamiques et simulateurs de rentabilité sous Microsoft Excel VBA et Power BI.
           </p>
         </div>
 
         {/* Tab Selector */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8">
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 mb-5">
           <button
             onClick={() => setActiveTab('treasury')}
-            className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
               activeTab === 'treasury'
                 ? 'bg-[#153258] text-white border-[#153258] shadow-md ring-2 ring-[#153258]/20'
                 : 'bg-white text-[#153258] border-slate-200 hover:border-[#153258]/40 shadow-2xs'
@@ -44,7 +44,7 @@ export const FinancialToolsPreview: React.FC = () => {
           
           <button
             onClick={() => setActiveTab('aging')}
-            className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
               activeTab === 'aging'
                 ? 'bg-[#153258] text-white border-[#153258] shadow-md ring-2 ring-[#153258]/20'
                 : 'bg-white text-[#153258] border-slate-200 hover:border-[#153258]/40 shadow-2xs'
@@ -55,7 +55,7 @@ export const FinancialToolsPreview: React.FC = () => {
           
           <button
             onClick={() => setActiveTab('breakeven')}
-            className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
               activeTab === 'breakeven'
                 ? 'bg-[#153258] text-white border-[#153258] shadow-md ring-2 ring-[#153258]/20'
                 : 'bg-white text-[#153258] border-slate-200 hover:border-[#153258]/40 shadow-2xs'
@@ -66,21 +66,21 @@ export const FinancialToolsPreview: React.FC = () => {
           
           <button
             onClick={() => setActiveTab('reporting')}
-            className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
               activeTab === 'reporting'
                 ? 'bg-[#153258] text-white border-[#153258] shadow-md ring-2 ring-[#153258]/20'
                 : 'bg-white text-[#153258] border-slate-200 hover:border-[#153258]/40 shadow-2xs'
             }`}
           >
-            04. Cockpit Direction Power BI
+            04. Cockpit Direction
           </button>
         </div>
 
         {/* Deliverable Mockup Window */}
-        <div className="bg-white rounded-3xl border border-[#0E1E37]/15 shadow-2xl overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#0E1E37]/15 shadow-2xl overflow-hidden">
           
           {/* Mock Window Top Titlebar (Authentic Financial Suite UI) */}
-          <div className="bg-[#0E1E37] text-white px-5 py-3 flex items-center justify-between text-xs border-b border-white/10">
+          <div className="bg-[#0E1E37] text-white px-5 py-2.5 flex items-center justify-between text-xs border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
@@ -91,32 +91,32 @@ export const FinancialToolsPreview: React.FC = () => {
                 {activeTab === 'treasury' && 'MATE_Matrice_Tresorerie_Glissante_v2026.xlsm'}
                 {activeTab === 'aging' && 'MATE_Balance_Agee_Clients_Relances.xlsx'}
                 {activeTab === 'breakeven' && 'MATE_Simulateur_Rentabilite_PointMort.xlsm'}
-                {activeTab === 'reporting' && 'MATE_Cockpit_Direction_KPIs.pbix'}
+                {activeTab === 'reporting' && 'MATE_Cockpit_Direction_KPIs.xlsx'}
               </span>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-slate-300">
-              <span className="hidden sm:inline">Macro VBA activée</span>
+              <span className="hidden sm:inline">Matrice automatisée</span>
               <span className="text-emerald-400 font-bold">✓ Données synchronisées</span>
             </div>
           </div>
 
           {/* Formula Bar Simulation */}
-          <div className="bg-slate-50 border-b border-slate-200 px-4 py-2 flex items-center gap-3 text-xs font-mono text-slate-600">
+          <div className="bg-slate-50 border-b border-slate-200 px-4 py-1.5 flex items-center gap-3 text-xs font-mono text-slate-600">
             <span className="font-bold text-[#153258] bg-slate-200 px-2 py-0.5 rounded text-[11px]">fx</span>
             <span className="text-[#0E1E37] truncate">
               {activeTab === 'treasury' && '=SOMME(C6:C12) - SOMME(C15:C22) + C5'}
               {activeTab === 'aging' && '=NB.SI.ENS(TableauClients[RetardJours]; ">30"; TableauClients[Statut]; "Relancé")'}
               {activeTab === 'breakeven' && '=CoutsFixes / TauxMargeSurCoutVariable'}
-              {activeTab === 'reporting' && 'EVALUATE CALCULATE([MargeNette%], DATESYTD(Calendrier[Date]))'}
+              {activeTab === 'reporting' && '=SYNTHESE.INDICATEURS(MargeNette; Tresorerie; Rentabilite)'}
             </span>
           </div>
 
-          <div className="p-6 sm:p-8">
+          <div className="p-5 sm:p-6">
             
             {/* TAB 1: TREASURY FORECAST */}
             {activeTab === 'treasury' && (
               <div>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#0E1E37] tracking-tight">
                       Plan Prévisionnel de Trésorerie Glissant à 12 Semaines
@@ -343,7 +343,7 @@ export const FinancialToolsPreview: React.FC = () => {
                   </div>
                   <div className="text-xs font-bold text-[#153258] bg-[#F6F1E9] px-3.5 py-2 rounded-xl border border-[#0E1E37]/10 flex items-center gap-1.5">
                     <BarChart2 className="w-4 h-4 text-[#C04A1A]" />
-                    <span>Microsoft Power BI / DAX</span>
+                    <span>Cockpit Direction</span>
                   </div>
                 </div>
 

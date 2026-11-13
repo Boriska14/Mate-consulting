@@ -7,7 +7,6 @@ import { HowItWorksSection } from './components/HowItWorksSection';
 import { InteractivePricingSimulator } from './components/InteractivePricingSimulator';
 import { FinancialToolsPreview } from './components/FinancialToolsPreview';
 import { WhyUsComparison } from './components/WhyUsComparison';
-import { FounderSection } from './components/FounderSection';
 import { ContactSection } from './components/ContactSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
@@ -36,11 +35,12 @@ export default function App() {
 
   const handleSendSimulation = (simData: any) => {
     setSimulationData(simData);
-    if (simData.recommendedOffer.toLowerCase().includes('essentiel')) {
+    const offer = simData.recommendedOffer.toLowerCase();
+    if (offer.includes('précomptabilité') || offer.includes('essentiel')) {
       setSelectedOfferId('precompta');
-    } else if (simData.recommendedOffer.toLowerCase().includes('performance')) {
+    } else if (offer.includes('gestion financière') || offer.includes('performance')) {
       setSelectedOfferId('pilotage');
-    } else if (simData.recommendedOffer.toLowerCase().includes('optimisation')) {
+    } else if (offer.includes('automatisation') || offer.includes('optimisation')) {
       setSelectedOfferId('modelisation');
     } else {
       setSelectedOfferId('tresorerie');
@@ -78,10 +78,7 @@ export default function App() {
         {/* 7. Why MATE Consulting Comparison */}
         <WhyUsComparison />
 
-        {/* 8. Founder Section (Condensed 3-4 lines focusing on method & results) */}
-        <FounderSection onOpenContact={handleOpenContact} />
-
-        {/* 9. Contact & Appointment Section (Short form, honeypot, Calendly link) */}
+        {/* 8. Contact & Appointment Section (Short form, honeypot, Calendly link) */}
         <ContactSection initialOffer={selectedOfferId} />
 
         {/* 10. FAQ (7 questions réelles) */}

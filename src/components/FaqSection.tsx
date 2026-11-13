@@ -12,7 +12,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
   const faqItems = [
     {
       q: 'Quelle est la différence entre MATE Consulting et mon expert-comptable ?',
-      a: 'MATE Consulting et votre expert-comptable sont parfaitement complémentaires. Votre expert-comptable valide et certifie vos comptes annuels, établit le bilan fiscal et atteste vos états financiers légaux. MATE Consulting intervient en amont au fil de l’eau : organisation des pièces justificatives, saisie précomptable, rapprochements bancaires réguliers, plan de trésorerie glissant à 12 semaines et relances clients. Nous transmettons à votre expert-comptable un dossier rigoureux et ordonné, ce qui lui fait gagner un temps précieux et réduit vos allers-retours stressants.',
+      a: 'MATE Consulting et votre expert-comptable sont parfaitement complémentaires. Votre expert-comptable valide et certifie vos comptes annuels, établit le bilan fiscal et atteste vos états financiers légaux. MATE Consulting intervient en amont au fil de l’eau : organisation des pièces justificatives, saisie précomptable, rapprochements bancaires réguliers, suivi de trésorerie et relances clients. Nous transmettons à votre expert-comptable un dossier rigoureux et ordonné, ce qui lui fait gagner un temps précieux et réduit vos allers-retours stressants.',
     },
     {
       q: 'Quelle est la durée d’engagement pour un accompagnement ?',
@@ -20,7 +20,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
     },
     {
       q: 'Quels sont les outils utilisés et compatibles avec mon entreprise ?',
-      a: 'Nous nous intégrons directement à votre écosystème : SAP, Qonto, iPaidThat, Indy, Henrri, Silae RH, banques professionnelles, ainsi que nos solutions d’analyse et d’automatisation (Excel VBA, Power BI, Power Automate, SQL, Python, Supabase) et les données financières Bloomberg.',
+      a: 'Nous nous intégrons directement à votre écosystème : SAP, Qonto, iPaidThat, Indy, Henrri, Silae RH, DocuSign, banques professionnelles, ainsi que nos solutions d’analyse et d’automatisation (Excel VBA, Power BI, Power Automate, SQL, Python, Supabase) et les données financières Bloomberg.',
     },
     {
       q: 'Comment garantissez-vous la confidentialité de mes données financières ?',
@@ -45,11 +45,11 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-24 bg-white border-b border-[#0E1E37]/10">
+    <section id="faq" className="py-10 md:py-14 bg-white border-b border-[#0E1E37]/10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-10">
           <div className="text-xs font-bold uppercase tracking-wider text-[#C04A1A] mb-2 flex items-center justify-center gap-1.5">
             <HelpCircle className="w-4 h-4" />
             <span>Transparence & Réponses Concrètes</span>
@@ -57,13 +57,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0E1E37] tracking-tight [text-wrap:balance]">
             Questions fréquentes des dirigeants
           </h2>
-          <p className="mt-4 text-base text-[#153258]/80 leading-relaxed font-normal">
+          <p className="mt-2.5 text-sm sm:text-base text-[#153258]/80 leading-relaxed font-normal">
             Tout ce que vous devez savoir avant de démarrer un accompagnement en pilotage financier.
           </p>
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3.5">
+        <div className="space-y-2.5">
           {faqItems.map((item, idx) => {
             const isOpen = openIdx === idx;
             return (
@@ -74,7 +74,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full py-4.5 px-6 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-[#0E1E37] hover:text-[#153258] transition-colors cursor-pointer"
+                  className="w-full py-3.5 px-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-[#0E1E37] hover:text-[#153258] transition-colors cursor-pointer"
                 >
                   <span className="text-left leading-snug">{item.q}</span>
                   <ChevronDown
@@ -85,7 +85,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-5 pt-2 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-[#0E1E37]/5 bg-white/70">
+                  <div className="px-5 pb-4 pt-2 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-[#0E1E37]/5 bg-white/70">
                     {item.a}
                   </div>
                 )}
@@ -96,7 +96,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
 
         {/* Reassurance prompt below FAQ */}
         {onOpenContact && (
-          <div className="mt-12 text-center p-6 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-6 text-center p-5 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-left text-xs sm:text-sm text-slate-700">
               <strong className="text-[#0E1E37] block font-bold">Vous avez une question spécifique sur votre trésorerie ?</strong>
               <span>Échangez directement avec l'équipe MATE Consulting lors d'un audit de 30 minutes sans engagement.</span>

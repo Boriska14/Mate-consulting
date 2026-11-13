@@ -76,7 +76,7 @@ export const OFFERS: OfferPackage[] = [
     domains: [
       { domain: 'Tout le socle Essentiel', details: 'Organisation complète, saisie précomptable, lettrage et lien expert-comptable inclus.' },
       { domain: 'Pilotage & Prévision de Trésorerie', details: 'Centralisation des comptes bancaires, suivi quotidien des disponibilités et plan de trésorerie glissant à 12 semaines.' },
-      { domain: 'Gestion du Poste Clients & Recouvrement', details: 'Suivi rigoureux de l’échéancier, balance âgée des créances, relances amiables et graduelles (mail & téléphone) pour réduire votre DSO.' },
+      { domain: 'Gestion du Poste Clients & Recouvrement', details: 'Suivi rigoureux de l’échéancier, balance âgée des créances, relances amiables et graduelles (mail & téléphone) pour accélérer vos encaissements.' },
       { domain: 'Gestion Fournisseurs & Règlements', details: 'Contrôle des factures fournisseurs, vérification des bons à payer et préparation des propositions de virement.' },
       { domain: 'Reporting Périodique & Points d’Attention', details: 'Synthèse mensuelle des encaissements/décaissements et note d’alerte sur la santé de trésorerie.' },
     ],
@@ -106,7 +106,7 @@ export const OFFERS: OfferPackage[] = [
       { domain: 'Tout le socle Business', details: 'Précomptabilité complète, trésorerie glissante 12 semaines et recouvrement inclus.' },
       { domain: 'Budgétisation & Prévisions Annuelles', details: 'Construction du budget prévisionnel annuel et réactualisation trimestrielle des scénarios d’exploitation.' },
       { domain: 'Analyse des Marges & Seuil de Rentabilité', details: 'Calcul précis des coûts de revient par prestation/produit, calcul du point mort en CA et volume.' },
-      { domain: 'Tableau de Bord KPIs Décisionnel', details: 'Indicateurs clés sur-mesure (rentabilité, liquidité, DSO, productivité, marge brute).' },
+      { domain: 'Tableau de Bord KPIs Décisionnel', details: 'Indicateurs clés sur-mesure (rentabilité, liquidité, délais de paiement, productivité, marge brute).' },
       { domain: 'Accompagnement Stratégique du Dirigeant', details: 'Réunions périodiques de synthèse, préparation des dossiers bancaires et d’investisseurs.' },
     ],
     deliverables: [
@@ -121,47 +121,37 @@ export const OFFERS: OfferPackage[] = [
 
 export const SPECIAL_OFFER: SpecialOffer = {
   id: 'optimisation',
-  name: 'Optimisation & Automatisation',
-  subtitle: 'Digitalisation des processus & Ingénierie des Outils Décisionnels',
-  target: 'Entreprises souhaitant éliminer les erreurs manuelles, fiabiliser la donnée et gagner du temps',
+  name: 'Automatisation de la Gestion Financière & Reporting',
+  subtitle: 'Collecte de pièces, association des flux & reporting automatisé',
+  target: 'Entreprises souhaitant automatiser leur gestion financière et fiabiliser leur reporting',
   hourlyRate: '50 à 80 € HT / h',
   hourlyRange: [50, 80],
   mode: 'Au projet sur devis ou en mission dédiée',
-  objective: 'Améliorer l’efficience globale de votre organisation administrative et financière grâce à des matrices Excel sur-mesure automatisées (sans licence logicielle coûteuse) et des circuits modernes.',
+  objective: 'Automatiser vos flux financiers de bout en bout — de la collecte de pièces jusqu’à l’association et au reporting — grâce à des matrices de gestion automatisées sur-mesure.',
   domains: [
-    { domain: 'Audit & Diagnostic Opérationnel', details: 'Analyse des circuits administratifs actuels, identification des points de friction et des doublons.' },
-    { domain: 'Matrices Excel & Macros VBA Sur-Mesure', details: 'Calculateurs de prix de vente optimisés, simulateurs de coûts de revient, prévisionnels automatisés.' },
-    { domain: 'Tableaux de Bord Power BI Interactifs', details: 'Connexion de vos flux de données et création de visuels décisionnels clairs et dynamiques.' },
-    { domain: 'Automatisation des Workflows & Facturation', details: 'Modèles de facturation automatisés, relances planifiées et intégration bancaire.' },
-    { domain: 'Formation & Transmission de Compétences', details: 'Prise en main guidée des outils développés, fiches pratiques et assistance post-livraison.' },
+    { domain: 'Collecte & Classement Automatisé des Pièces', details: 'Centralisation fluide et indexation automatique des factures et justificatifs.' },
+    { domain: 'Association & Rapprochement des Flux', details: 'Mise en correspondance automatisée des pièces comptables et des mouvements bancaires.' },
+    { domain: 'Matrices de Gestion Automatisées', details: 'Conception de matrices de gestion automatisées dédiées à votre suivi financier et reporting.' },
+    { domain: 'Formation & Prise en Main', details: 'Accompagnement pratique de vos équipes pour une autonomie complète sur les matrices livrées.' },
   ],
   deliverables: [
-    'Rapport de diagnostic organisationnel et axes d’optimisation',
-    'Fichiers et matrices Excel automatisés avec macros VBA pérennes',
-    'Tableau de bord Power BI interactif connecté à vos sources',
-    'Guides d’utilisation opérationnels et documentation technique',
-    'Session de formation sur-mesure pour votre équipe',
+    'Matrice de gestion automatisée sur-mesure (collecte de pièces, association et reporting)',
+    'Formation et prise en main complète pour votre autonomie',
   ],
 };
 
 export const COMPARISON_POINTS = [
   {
     criterion: 'Qualification & Rigueur Technique',
-    mateConsulting: 'Certifications AMF & Bloomberg BMC, maîtrise SAP, Excel VBA, Power BI, SQL & Python',
+    mateConsulting: '5 ans d’expérience en gestion financière : maîtrise de la précomptabilité, du pilotage de trésorerie, du contrôle de gestion et de l’automatisation, avec possibilité de travailler avec des experts.',
     traditionalSecretary: 'Généraliste administrative, sans compétence en analyse financière de haut de bilan',
     bigFirmDAF: 'Consultants juniors souvent détachés par des cabinets aux honoraires exorbitants',
   },
   {
     criterion: 'Coût & Engagement',
-    mateConsulting: 'Facturation horaire souple (dès 25-50 €/h), sans engagement, 0 € de frais de structure',
+    mateConsulting: 'Facturation horaire souple (dès 25 €/h) sans engagement : réduction de la charge mentale et tarifs réduits comparés à l’emploi d’un agent fixe',
     traditionalSecretary: 'Tarif horaire bas mais valeur ajoutée limitée au secrétariat pur',
-    bigFirmDAF: 'Forfaits mensuels élevés (> 3 000 €/m) souvent inaccessibles pour une TPE',
-  },
-  {
-    criterion: 'Outillage Logiciel & Coûts Cachés',
-    mateConsulting: 'Développement de matrices Excel/VBA sur-mesure sans surcoût de licence logicielle',
-    traditionalSecretary: 'Outils basiques manuels avec risque d’erreurs de ressaisie',
-    bigFirmDAF: 'Impose l’achat de licences ERP coûteuses à la charge du client',
+    bigFirmDAF: 'Forfaits mensuels élevés (> 3 000 €/m) et coûts fixes d’embauche inaccessibles pour une TPE',
   },
   {
     criterion: 'Impact Décisionnel',
@@ -190,7 +180,7 @@ export const FREQUENT_QUESTIONS = [
   },
   {
     q: 'Quels outils utilisez-vous au quotidien ?',
-    a: 'Nous maîtrisons votre écosystème complet : SAP, Bloomberg, Power BI, Excel (VBA), SQL, Python, Power Automate, Qonto, iPaidThat, Indy, Henrri, Silae RH et Supabase.',
+    a: 'Nous maîtrisons votre écosystème complet : SAP, Bloomberg, Power BI, Excel (VBA), SQL, Python, Power Automate, Qonto, iPaidThat, Indy, Henrri, Silae RH, DocuSign et Supabase.',
   },
   {
     q: 'Intervenez-vous sur site ou à distance ?',

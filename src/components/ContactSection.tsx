@@ -12,7 +12,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
     fullName: '',
     email: '',
     phone: '',
-    companySize: 'tpe_1_9',
+    companyType: 'tpe',
     need: initialOffer,
     message: '',
     // Honeypot field (hidden from real users to trap spam bots)
@@ -39,7 +39,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
       return;
     }
 
-    trackEvent('form_submit_start', { companySize: formData.companySize, need: formData.need });
+    trackEvent('form_submit_start', { companyType: formData.companyType, need: formData.need });
     setSubmitting(true);
 
     setTimeout(() => {
@@ -50,46 +50,46 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[#0E1E37] text-white relative overflow-hidden">
+    <section id="contact" className="py-10 md:py-14 bg-[#0E1E37] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-[#153258] rounded-full filter blur-3xl opacity-40 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-[#C04A1A] rounded-full filter blur-3xl opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Direct Multi-Channel & Appointment Booking Link */}
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#E2672F] mb-3">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#E2672F] mb-2">
               <Calendar className="w-4 h-4" />
               <span>Prise de Rendez-Vous Directe</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight [text-wrap:balance]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight [text-wrap:balance]">
               Réserver un échange de 30 min offert
             </h2>
             
-            <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+            <p className="mt-2.5 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
               Un échange confidentiel et sans engagement avec <strong>l'équipe MATE Consulting</strong> pour
               auditer votre organisation financière, identifier vos leviers d’optimisation et estimer votre budget.
             </p>
 
             {/* Direct Instant Calendar Booking Card */}
-            <div className="mt-7 p-5 rounded-2xl bg-[#153258] border border-white/15 shadow-md">
+            <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#153258] border border-white/15 shadow-md">
               <div className="text-xs font-bold uppercase tracking-wider text-[#E2672F] mb-1">
                 Option Rapide : Agenda en Ligne
               </div>
-              <h3 className="text-base font-bold text-white mb-2">
+              <h3 className="text-base font-bold text-white mb-1.5">
                 Choisissez directement votre créneau
               </h3>
-              <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+              <p className="text-xs text-slate-300 mb-3 leading-relaxed">
                 Accédez à notre calendrier en ligne pour réserver instantanément un créneau de 30 minutes sans échange d'emails préalable.
               </p>
               
               <a
                 href={`mailto:${COMPANY_INFO.founder.email}?subject=R%C3%A9servation%20cr%C3%A9neau%20%C3%A9change%2030%20min%20-%20MATE%20Consulting`}
                 onClick={() => trackEvent('calendly_click')}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-extrabold text-xs uppercase tracking-wider text-[#0E1E37] bg-white hover:bg-slate-100 transition-all shadow-sm cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl font-extrabold text-xs uppercase tracking-wider text-[#0E1E37] bg-white hover:bg-slate-100 transition-all shadow-sm cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-[#C04A1A]" />
                 <span>Ouvrir l'agenda en ligne (30 min)</span>
@@ -98,20 +98,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
             </div>
 
             {/* Direct Channels Cards */}
-            <div className="mt-6 space-y-3">
+            <div className="mt-4 space-y-2.5">
               
               {/* Telephone */}
               <a
                 href={`tel:${COMPANY_INFO.founder.phone}`}
                 onClick={() => trackEvent('phone_click')}
-                className="flex items-center gap-4 p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group cursor-pointer shadow-2xs"
+                className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group cursor-pointer shadow-2xs"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#153258] border border-white/10 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-[#153258] border border-white/10 flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4 text-[#E2672F] group-hover:scale-110 transition-transform" />
                 </div>
                 <div>
                   <div className="text-[11px] text-slate-400 font-medium">Appel téléphonique direct</div>
-                  <div className="text-base font-bold text-white font-mono tabular-nums">
+                  <div className="text-sm font-bold text-white font-mono tabular-nums">
                     {COMPANY_INFO.founder.phoneFormatted}
                   </div>
                 </div>
@@ -123,9 +123,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('whatsapp_click')}
-                className="flex items-center gap-4 p-3.5 rounded-2xl bg-emerald-950/40 hover:bg-emerald-900/40 border border-emerald-500/30 transition-all group cursor-pointer shadow-2xs"
+                className="flex items-center gap-3.5 p-3 rounded-2xl bg-emerald-950/40 hover:bg-emerald-900/40 border border-emerald-500/30 transition-all group cursor-pointer shadow-2xs"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-900/60 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-emerald-900/60 flex items-center justify-center shrink-0">
                   <MessageSquare className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
                 </div>
                 <div>
@@ -139,9 +139,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
               {/* Email */}
               <a
                 href={`mailto:${COMPANY_INFO.founder.email}?subject=Demande%20d%27%C3%A9change%20de%2030%20min%20MATE%20Consulting`}
-                className="flex items-center gap-4 p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group cursor-pointer shadow-2xs"
+                className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group cursor-pointer shadow-2xs"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#153258] border border-white/10 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-[#153258] border border-white/10 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-[#5B84B1] group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="truncate">
@@ -155,7 +155,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
             </div>
 
             {/* Reassurance */}
-            <div className="mt-6 pt-5 border-t border-white/10 space-y-2 text-xs text-slate-300">
+            <div className="mt-4 pt-4 border-t border-white/10 space-y-1.5 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#E2672F] shrink-0" />
                 <span>Accord de confidentialité (NDA) signé sur demande</span>
@@ -169,7 +169,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
           </div>
 
           {/* Right Column: Short Validated Form with Honeypot */}
-          <div className="lg:col-span-7 bg-white text-[#0E1E37] rounded-3xl p-6 sm:p-9 shadow-2xl border border-white/20">
+          <div className="lg:col-span-7 bg-white text-[#0E1E37] rounded-2xl p-5 sm:p-7 shadow-2xl border border-white/20">
             {submitted ? (
               <div className="py-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
@@ -185,7 +185,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
 
                 <div className="mt-6 p-4 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/10 text-xs text-left max-w-md mx-auto space-y-1">
                   <div><strong>Besoin sélectionné :</strong> {formData.need}</div>
-                  <div><strong>Taille d'entreprise :</strong> {formData.companySize}</div>
+                  <div><strong>Type d'entreprise :</strong> {formData.companyType}</div>
                   <div><strong>Notification envoyée à :</strong> {COMPANY_INFO.founder.email}</div>
                 </div>
 
@@ -281,17 +281,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#153258] mb-1">
-                      Taille de l'entreprise *
+                      Type d'entreprise *
                     </label>
                     <select
-                      value={formData.companySize}
-                      onChange={(e) => setFormData({ ...formData, companySize: e.target.value })}
+                      value={formData.companyType}
+                      onChange={(e) => setFormData({ ...formData, companyType: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs bg-white focus:ring-2 focus:ring-[#153258] focus:border-transparent outline-none"
                     >
-                      <option value="solo">Indépendant / Consultant (0 salarié)</option>
-                      <option value="tpe_1_9">TPE (1 à 9 salariés)</option>
-                      <option value="pme_10_49">PME (10 à 49 salariés)</option>
-                      <option value="pme_50plus">PME / ETI (50+ salariés)</option>
+                      <option value="independant">Indépendant / Profession libérale</option>
+                      <option value="tpe">TPE / Artisan / Commerce</option>
+                      <option value="pme">PME / Startup</option>
+                      <option value="association">Association / Autre structure</option>
                     </select>
                   </div>
                 </div>
@@ -306,11 +306,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
                     onChange={(e) => setFormData({ ...formData, need: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs bg-white focus:ring-2 focus:ring-[#153258] focus:border-transparent outline-none"
                   >
-                    <option value="pilotage">Externalisation de la gestion financière & pilotage</option>
-                    <option value="tresorerie">Suivi & prévisions de trésorerie glissante 12 semaines</option>
-                    <option value="precompta">Précomptabilité opérationnelle & classement pièces</option>
-                    <option value="modelisation">Création de matrices de gestion Excel VBA / Power BI</option>
-                    <option value="autre">Autre demande spécifique / Devis</option>
+                    <option value="precompta">01. Précomptabilité Opérationnelle & Gestion Administrative</option>
+                    <option value="tresorerie">02. Pilotage de Trésorerie & Gestion du Poste Clients</option>
+                    <option value="pilotage">03. Gestion Financière Externalisée & Pilotage Stratégique</option>
+                    <option value="modelisation">04. Automatisation de la Gestion Financière & Reporting</option>
+                    <option value="devis">Estimation personnalisée / À définir ensemble</option>
                   </select>
                 </div>
 

@@ -19,7 +19,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [companySize, setCompanySize] = useState('tpe_1_9');
+  const [companyType, setCompanyType] = useState('tpe');
   const [need, setNeed] = useState(selectedOfferId);
   const [message, setMessage] = useState('');
   const [websiteTrap, setWebsiteTrap] = useState('');
@@ -51,7 +51,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
 
     setSubmitting(true);
-    trackEvent('form_submit_start', { modal: true, need, companySize });
+    trackEvent('form_submit_start', { modal: true, need, companyType });
 
     setTimeout(() => {
       setSubmitting(false);
@@ -173,17 +173,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-[#153258] mb-1">
-                      Taille de l'entreprise *
+                      Type d'entreprise *
                     </label>
                     <select
-                      value={companySize}
-                      onChange={(e) => setCompanySize(e.target.value)}
+                      value={companyType}
+                      onChange={(e) => setCompanyType(e.target.value)}
                       className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white outline-none"
                     >
-                      <option value="solo">Indépendant (0 sal.)</option>
-                      <option value="tpe_1_9">TPE (1 à 9 sal.)</option>
-                      <option value="pme_10_49">PME (10 à 49 sal.)</option>
-                      <option value="pme_50plus">PME (50+ sal.)</option>
+                      <option value="independant">Indépendant / Profession libérale</option>
+                      <option value="tpe">TPE / Artisan / Commerce</option>
+                      <option value="pme">PME / Startup</option>
+                      <option value="association">Association / Autre structure</option>
                     </select>
                   </div>
                 </div>
@@ -225,11 +225,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     onChange={(e) => setNeed(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white outline-none"
                   >
-                    <option value="pilotage">Externalisation de la gestion financière & pilotage</option>
-                    <option value="tresorerie">Suivi de trésorerie glissante 12 semaines</option>
-                    <option value="precompta">Précomptabilité opérationnelle & tri pièces</option>
-                    <option value="modelisation">Matrices Excel VBA / Power BI sur-mesure</option>
-                    <option value="autre">Autre échange / Diagnostic préalable</option>
+                    <option value="precompta">01. Précomptabilité Opérationnelle & Gestion Administrative</option>
+                    <option value="tresorerie">02. Pilotage de Trésorerie & Gestion du Poste Clients</option>
+                    <option value="pilotage">03. Gestion Financière Externalisée & Pilotage Stratégique</option>
+                    <option value="modelisation">04. Automatisation de la Gestion Financière & Reporting</option>
+                    <option value="devis">Estimation personnalisée / À définir ensemble</option>
                   </select>
                 </div>
 

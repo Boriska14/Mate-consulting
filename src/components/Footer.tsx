@@ -16,9 +16,9 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenPrivacy,
 }) => {
   return (
-    <footer className="bg-[#0E1E37] text-white border-t border-white/10 pt-16 pb-12">
+    <footer className="bg-[#0E1E37] text-white border-t border-white/10 pt-10 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8 border-b border-white/10">
           
           {/* Brand & Pillars */}
           <div className="lg:col-span-5">
@@ -59,11 +59,6 @@ export const Footer: React.FC<FooterProps> = ({
             <div>
               <a href="#outils" className="text-slate-300 hover:text-white transition-colors">
                 Matrices Excel & Power BI
-              </a>
-            </div>
-            <div>
-              <a href="#fondateur" className="text-slate-300 hover:text-white transition-colors">
-                L'expertise de l'équipe MATE Consulting
               </a>
             </div>
             <div>

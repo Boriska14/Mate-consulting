@@ -17,12 +17,12 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onOpenContact })
   };
 
   return (
-    <section id="fondateur" className="py-16 md:py-20 bg-white border-b border-[#0E1E37]/10 relative">
+    <section id="fondateur" className="py-8 md:py-12 bg-white border-b border-[#0E1E37]/10 relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Condensed Executive Block (3 to 4 lines maximum focusing on method & results) */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#F6F1E9] border border-[#0E1E37]/15 shadow-sm">
-          <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/15 shadow-sm">
+          <div className="flex flex-col md:flex-row items-center gap-5 sm:gap-6">
             
             {/* Visual Portrait */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-[#153258] shrink-0 border-2 border-white shadow-sm">

@@ -102,7 +102,7 @@ export const HowItWorksSection: React.FC<HowItWorksProps> = ({ onOpenContact }) 
               Prêt à faire le point sur votre trésorerie et vos finances ?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
-              Échangez pendant 30 minutes avec Ted Enrick MBILONGO pour évaluer vos gains immédiats.
+              Échangez pendant 30 minutes avec l'équipe MATE Consulting pour évaluer vos gains immédiats.
             </p>
           </div>
           <button

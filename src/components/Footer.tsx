@@ -1,19 +1,17 @@
 import React from 'react';
 import { MateLogo } from './MateLogo';
 import { COMPANY_INFO } from '../data/mateData';
-import { Phone, Mail, MessageSquare, Rocket, ShieldCheck, Lock } from 'lucide-react';
+import { Phone, Mail, MessageSquare, ShieldCheck, Lock } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
 
 interface FooterProps {
   onOpenContact: (mode?: 'diagnostic' | 'message') => void;
-  onOpenDeployGuide: () => void;
   onOpenLegal: () => void;
   onOpenPrivacy: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onOpenContact,
-  onOpenDeployGuide,
   onOpenLegal,
   onOpenPrivacy,
 }) => {
@@ -26,8 +24,8 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="lg:col-span-5">
             <MateLogo size="md" variant="dark" showSubtitle={true} />
             <p className="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
-              Direction Administrative et Financière (DAF) externalisée, précomptabilité opérationnelle
-              et matrices de gestion décisionnelles pour TPE, startups, artisans et indépendants.
+              Externalisation de la gestion financière au format agile, précomptabilité
+              et outils d'aide à la décision sous Excel et Power BI pour PME, TPE, startups, artisans et indépendants.
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-[#E2672F] font-bold tracking-wider uppercase">
               <span>{COMPANY_INFO.pillars[0]}</span>
@@ -35,15 +33,6 @@ export const Footer: React.FC<FooterProps> = ({
               <span>{COMPANY_INFO.pillars[1]}</span>
               <span aria-hidden="true">·</span>
               <span>{COMPANY_INFO.pillars[2]}</span>
-            </div>
-            <div className="mt-6 flex items-center gap-3">
-              <button
-                onClick={onOpenDeployGuide}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors cursor-pointer"
-              >
-                <Rocket className="w-3.5 h-3.5 text-[#E2672F]" />
-                <span>Déploiement Vercel</span>
-              </button>
             </div>
           </div>
 
@@ -54,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
             <div>
               <a href="#services" className="text-slate-300 hover:text-white transition-colors">
-                Nos 4 services DAF & Précompta
+                Nos 4 services gestion & précompta
               </a>
             </div>
             <div>
@@ -74,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
             <div>
               <a href="#fondateur" className="text-slate-300 hover:text-white transition-colors">
-                L'expertise de Ted Enrick MBILONGO
+                L'expertise de l'équipe MATE Consulting
               </a>
             </div>
             <div>
@@ -117,9 +106,6 @@ export const Footer: React.FC<FooterProps> = ({
                 Échange direct WhatsApp
               </a>
             </div>
-            <div className="text-[11px] text-slate-400 pt-2">
-              Zone couverte : France, Afrique francophone & International (bureau à Paris)
-            </div>
             
             <button
               onClick={() => {
@@ -146,7 +132,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Legal links & Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
           <div>
-            © {new Date().getFullYear()} {COMPANY_INFO.legalName} · SIREN {COMPANY_INFO.siren} · 75000 Paris, France.
+            © {new Date().getFullYear()} {COMPANY_INFO.legalName} · SIREN {COMPANY_INFO.siren}.
           </div>
           
           <div className="flex items-center gap-4 text-[11px]">

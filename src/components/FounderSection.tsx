@@ -1,7 +1,8 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/mateData';
-import { ShieldCheck, Calendar, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Calendar, CheckCircle2 } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
+import teamCollabImg from '../assets/images/mate_collaboration_meeting_1794400057216.jpg';
 
 interface FounderSectionProps {
   onOpenContact: (mode?: 'diagnostic' | 'message') => void;
@@ -26,13 +27,12 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onOpenContact })
             {/* Visual Portrait */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-[#153258] shrink-0 border-2 border-white shadow-sm">
               <img
-                src="/src/assets/images/mate_founder_workspace_1794400058048.jpg"
-                alt="Ted Enrick MBILONGO, Fondateur de MATE Consulting"
+                src={teamCollabImg}
+                alt="L'équipe de gestion financière externalisée MATE Consulting"
                 width={360}
                 height={360}
                 loading="lazy"
-                className="w-full h-full object-cover object-top"
-                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover object-center"
               />
             </div>
 
@@ -40,17 +40,17 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ onOpenContact })
             <div className="flex-1 text-center md:text-left">
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-1">
                 <span className="text-sm sm:text-base font-extrabold text-[#0E1E37]">
-                  {founder.name}
+                  L’Équipe MATE Consulting
                 </span>
                 <span className="text-slate-300 hidden sm:inline">·</span>
                 <span className="text-xs font-semibold text-[#C04A1A]">
-                  Fondateur & Consultant Référent
+                  Gestion Financière Externalisée & Pilotage Opérationnel
                 </span>
               </div>
 
-              {/* 3 to 4 lines focusing on credibility, method and client outcomes */}
+              {/* Focus purely on competencies and client mission */}
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
-                Diplômé d’un Double Master en Finance d’Entreprise (INSEEC) et Big Data Financier (Major de promotion ESG) et certifié AMF 2024, Ted Enrick MBILONGO applique une méthode issue des salles de marchés (CIC) et de la direction financière opérationnelle de PME. L’objectif : libérer les dirigeants de leur charge administrative et fiabiliser leur visibilité de trésorerie grâce à des modèles de gestion sur-mesure.
+                Composée de consultants seniors certifiés AMF 2024 et Bloomberg BMC, l’équipe MATE Consulting associe maîtrise comptable et précomptable, pilotage prédictif de trésorerie, automatisation des flux (Power Automate, Excel VBA) et mise en place d’outils d’aide à la décision sous Power BI, SQL et Python. Notre mission : décharger durablement les dirigeants de leur charge administrative et fiabiliser leur visibilité financière.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-y-2 gap-x-4 text-[11px] font-semibold text-[#153258]">

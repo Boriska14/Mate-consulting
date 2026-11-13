@@ -1,7 +1,9 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, TrendingUp, Calendar, ChevronDown, CheckCircle2, FileSpreadsheet, Sparkles, Building2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, TrendingUp, Calendar, ChevronDown, CheckCircle2, FileSpreadsheet, Sparkles, Lock } from 'lucide-react';
 import { COMPANY_INFO } from '../data/mateData';
 import { trackEvent } from '../utils/analytics';
+import heroWorkspaceImg from '../assets/images/mate_consulting_hero_1794571011092.jpg';
+import fallbackWorkspaceImg from '../assets/images/mate_hero_consulting_1794400056701.jpg';
 
 interface HeroProps {
   onOpenContact: (mode?: 'diagnostic' | 'message') => void;
@@ -58,9 +60,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
 
             {/* Value Narrative */}
             <p className="text-base sm:text-lg text-[#153258]/90 leading-relaxed max-w-2xl mb-8 font-normal">
-              MATE Consulting est le <strong>DAF externalisé au format agile</strong> dédié aux TPE,
-              startups, artisans et indépendants. De la précomptabilité opérationnelle
-              (Qonto, Ipaidthat) à la modélisation décisionnelle sous Excel et Power BI,
+              MATE Consulting propose l’<strong>externalisation de la gestion financière au format agile</strong> dédiée
+              aux PME, TPE, startups, artisans et indépendants. De la précomptabilité à la mise en place d’outils d’aide à la décision sous Excel et Power BI,
               nous structurons vos finances et sécurisons votre trésorerie à coût maîtrisé.
             </p>
 
@@ -70,28 +71,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
                 <div className="w-6 h-6 rounded-lg bg-[#C04A1A]/10 text-[#C04A1A] flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
-                <span>Facturation au temps passé dès 25 € HT / h</span>
+                <span>Facturation horaire dès 25 € HT / h</span>
               </div>
 
               <div className="flex items-center gap-2.5 bg-white/70 backdrop-blur-xs p-2.5 rounded-xl border border-[#0E1E37]/10 shadow-2xs">
                 <div className="w-6 h-6 rounded-lg bg-[#153258]/10 text-[#153258] flex items-center justify-center shrink-0">
                   <FileSpreadsheet className="w-4 h-4" />
                 </div>
-                <span>Matrices Excel sur-mesure (0 € licence logicielle)</span>
+                <span>Outils d’aide à la décision (Excel & Power BI)</span>
               </div>
 
               <div className="flex items-center gap-2.5 bg-white/70 backdrop-blur-xs p-2.5 rounded-xl border border-[#0E1E37]/10 shadow-2xs">
                 <div className="w-6 h-6 rounded-lg bg-[#5B84B1]/15 text-[#5B84B1] flex items-center justify-center shrink-0">
                   <TrendingUp className="w-4 h-4" />
                 </div>
-                <span>Trésorerie glissante 12 semaines & réduction DSO</span>
+                <span>Précomptabilité structurée & pilotage cash</span>
               </div>
 
               <div className="flex items-center gap-2.5 bg-white/70 backdrop-blur-xs p-2.5 rounded-xl border border-[#0E1E37]/10 shadow-2xs">
                 <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
-                <span>100% modulable et sans engagement de durée</span>
+                <span>100% Modulable et sans engagement</span>
               </div>
             </div>
 
@@ -122,11 +123,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
                 <span>Certifications AMF 2024 & Bloomberg BMC</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Building2 className="w-4 h-4 text-[#5B84B1]" />
-                <span>Double Master Finance & Data Science (Major Promo)</span>
+                <Lock className="w-4 h-4 text-[#5B84B1]" />
+                <span>Secret professionnel & confidentialité stricte</span>
               </div>
               <div className="text-slate-500 font-mono text-[11px]">
-                SIREN {COMPANY_INFO.siren} · France & Afrique francophone
+                SIREN {COMPANY_INFO.siren}
               </div>
             </div>
 
@@ -138,16 +139,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
               
               <div className="aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] relative overflow-hidden bg-[#153258]">
                 <img
-                  src="/src/assets/images/mate_hero_consulting_1794400056701.jpg"
-                  alt="Poste de travail et direction financière externalisée MATE Consulting"
+                  src={heroWorkspaceImg}
+                  alt="Poste de travail et externalisation de la gestion financière MATE Consulting"
                   width={640}
                   height={480}
                   loading="eager"
                   className="w-full h-full object-cover object-center transform group-hover:scale-102 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = '/src/assets/images/mate_founder_workspace_1794400058048.jpg';
+                    target.src = fallbackWorkspaceImg;
                   }}
                 />
                 
@@ -155,7 +155,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
 
                 <div className="absolute top-4 left-4 bg-[#0E1E37]/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 text-white flex items-center gap-2 text-xs font-semibold">
                   <div className="w-2 h-2 rounded-full bg-[#E2672F]" />
-                  <span>Direction Financière Externalisée</span>
+                  <span>Gestion Financière Externalisée</span>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -163,7 +163,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
                     Rigueur financière de marché, agilité opérationnelle
                   </div>
                   <p className="text-xs text-[#D9CDBB] mt-1">
-                    Accompagnement continu à distance et sur site en Île-de-France & international.
+                    Accompagnement continu, modulable et adapté à votre rythme d'activité.
                   </p>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact }) => {
 
             <div className="mt-3 flex items-center justify-between text-[11px] text-[#153258]/70 px-2 font-mono">
               <span>Entreprise Individuelle (EI)</span>
-              <span className="text-[#C04A1A] font-bold">France & Afrique francophone</span>
+              <span className="text-[#C04A1A] font-bold">Format agile · Facturation horaire</span>
             </div>
           </div>
 

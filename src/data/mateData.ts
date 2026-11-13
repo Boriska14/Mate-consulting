@@ -8,26 +8,13 @@ export const COMPANY_INFO = {
   slogan: 'Votre gestion. Notre expertise. Votre performance.',
   pillars: ['Data', 'Optimisation', 'Croissance'],
   founder: {
-    name: 'Ted Enrick MBILONGO',
-    title: 'Fondateur & Consultant Senior en Pilotage Financier',
+    name: 'L’Équipe MATE Consulting',
+    title: 'Consultants Seniors en Gestion Financière Externalisée & Ingénierie Décisionnelle',
     phone: '+33 6 23 37 54 74',
     phoneFormatted: '06 23 37 54 74',
     email: 'Contact@mateconsulting.fr',
-    location: 'Paris, France (Interventions à distance et sur site en Île-de-France)',
-    whatsappUrl: 'https://wa.me/33623375474?text=Bonjour%20Ted,%20je%20souhaite%20%C3%A9changer%20sur%20un%20accompagnement%20MATE%20Consulting.',
-    degrees: [
-      {
-        institution: 'INSEEC Business School, Paris',
-        degree: 'Master en Analyse Financière Internationale',
-        specialty: 'États financiers, ratios de rentabilité & solvabilité, audit opérationnel et modélisation de haut de bilan',
-      },
-      {
-        institution: 'ESG Finance, Paris',
-        degree: 'Master Big Data & Data Science en Finance',
-        honors: 'Major de Promotion',
-        specialty: 'Modélisation mathématique financière, stress-tests, prédiction de trésorerie et structuration de bases de données',
-      },
-    ],
+    location: 'Accompagnement à distance et sur site',
+    whatsappUrl: 'https://wa.me/33623375474?text=Bonjour,%20je%20souhaite%20%C3%A9changer%20avec%20l%27%C3%A9quipe%20MATE%20Consulting.',
     certifications: [
       {
         name: 'AMF (Autorité des Marchés Financiers)',
@@ -42,24 +29,7 @@ export const COMPANY_INFO = {
       {
         name: "Expertise Excel & VBA Avancé",
         year: '2023',
-        details: 'OpenClassRooms - Conception d’architectures automatisées de gestion sans licence supplémentaire',
-      },
-    ],
-    experiences: [
-      {
-        role: 'Consultant Administratif et Comptable',
-        company: 'PILINK',
-        highlights: 'Prise en charge intégrale de la précomptabilité sur Qonto, rapprochements bancaires multi-comptes, gestion et recouvrement des créances clients, optimisation du BFR et tableaux de bord de pilotage.',
-      },
-      {
-        role: 'Contrôleur Risques et Résultats',
-        company: 'CIC Marchés',
-        highlights: 'Refonte globale et automatisation complète de l’outil de performance de la Trésorerie Titres sous Excel VBA. Production quotidienne du PNB économique/IFRS et suivi des ratios réglementaires de liquidité (LCR, VaR).',
-      },
-      {
-        role: 'Adjoint de Direction - Trésorerie & Gestion Financière',
-        company: 'FORMA+',
-        highlights: 'Centralisation de la précomptabilité sur Ipaidthat, modélisation prédictive des flux inter-entités, analyses budgétaires et coordination fluide avec les cabinets d’expertise comptable.',
+        details: 'Conception d’architectures automatisées de gestion sans licence supplémentaire',
       },
     ],
   },
@@ -73,9 +43,9 @@ export const OFFERS: OfferPackage[] = [
     target: 'Indépendants, consultants, professions libérales et micro-entreprises',
     hourlyRate: '25 à 35 € HT / h',
     hourlyRange: [25, 35],
-    monthlyHours: '5h à 20h / mois',
-    monthlyRange: [5, 20],
-    recommendedBudget: '125 € à 700 € HT / mois',
+    monthlyHours: '10h à 20h / mois',
+    monthlyRange: [10, 20],
+    recommendedBudget: '250 € à 700 € HT / mois',
     objective: 'Permettre à un entrepreneur ou professionnel libéral de disposer d’une organisation administrative et précomptable rigoureuse, de justificatifs classés et de déclarations honorées sans retard.',
     domains: [
       { domain: 'Organisation & Classement', details: 'Création du dossier administratif, collecte et tri chronologique de l’ensemble des pièces (factures, reçus, relevés).' },
@@ -99,12 +69,9 @@ export const OFFERS: OfferPackage[] = [
     target: 'TPE et dirigeants ayant une activité commerciale régulière et des flux à sécuriser',
     hourlyRate: '35 à 45 € HT / h',
     hourlyRange: [35, 45],
-    monthlyHours: '10h à 35h / mois',
-    monthlyRange: [10, 35],
-    recommendedBudget: '350 € à 1 575 € HT / mois',
-    popular: true,
-    highlightColor: '#C04A1A',
-    badge: 'Recommandé TPE',
+    monthlyHours: '20h à 35h / mois',
+    monthlyRange: [20, 35],
+    recommendedBudget: '700 € à 1 575 € HT / mois',
     objective: 'Aller au-delà de la précomptabilité en assurant un suivi actif de la trésorerie au quotidien, la maîtrise des encaissements clients et la visibilité continue sur les marges.',
     domains: [
       { domain: 'Tout le socle Essentiel', details: 'Organisation complète, saisie précomptable, lettrage et lien expert-comptable inclus.' },
@@ -128,10 +95,13 @@ export const OFFERS: OfferPackage[] = [
     target: 'TPE & PME en structuration ou en accélération cherchant à piloter leur rentabilité',
     hourlyRate: '45 à 60 € HT / h',
     hourlyRange: [45, 60],
-    monthlyHours: '15h à 40h / mois',
-    monthlyRange: [15, 40],
-    recommendedBudget: '675 € à 2 400 € HT / mois',
-    objective: 'Véritable Direction Administrative et Financière (DAF) externalisée pour transformer la donnée brute en boussole stratégique, anticiper les besoins en financement et maximiser l’EBITDA.',
+    monthlyHours: '25h à 40h / mois',
+    monthlyRange: [25, 40],
+    recommendedBudget: '1 125 € à 2 400 € HT / mois',
+    popular: true,
+    highlightColor: '#C04A1A',
+    badge: 'Recommandé',
+    objective: 'Externalisation complète du pilotage financier au format agile pour transformer la donnée brute en boussole stratégique, anticiper les besoins en financement et maximiser l’EBITDA.',
     domains: [
       { domain: 'Tout le socle Business', details: 'Précomptabilité complète, trésorerie glissante 12 semaines et recouvrement inclus.' },
       { domain: 'Budgétisation & Prévisions Annuelles', details: 'Construction du budget prévisionnel annuel et réactualisation trimestrielle des scénarios d’exploitation.' },
@@ -177,13 +147,13 @@ export const SPECIAL_OFFER: SpecialOffer = {
 export const COMPARISON_POINTS = [
   {
     criterion: 'Qualification & Rigueur Technique',
-    mateConsulting: 'Double Master Finance & Data (Major de Promotion), Certifié AMF & Bloomberg, expert modélisation',
+    mateConsulting: 'Certifications AMF & Bloomberg BMC, maîtrise SAP, Excel VBA, Power BI, SQL & Python',
     traditionalSecretary: 'Généraliste administrative, sans compétence en analyse financière de haut de bilan',
     bigFirmDAF: 'Consultants juniors souvent détachés par des cabinets aux honoraires exorbitants',
   },
   {
     criterion: 'Coût & Engagement',
-    mateConsulting: 'Facturation souple au temps passé (dès 25-50 €/h), sans engagement de durée, 0 € de frais de structure',
+    mateConsulting: 'Facturation horaire souple (dès 25-50 €/h), sans engagement, 0 € de frais de structure',
     traditionalSecretary: 'Tarif horaire bas mais valeur ajoutée limitée au secrétariat pur',
     bigFirmDAF: 'Forfaits mensuels élevés (> 3 000 €/m) souvent inaccessibles pour une TPE',
   },
@@ -220,10 +190,10 @@ export const FREQUENT_QUESTIONS = [
   },
   {
     q: 'Quels outils utilisez-vous au quotidien ?',
-    a: 'Nous nous adaptons à votre écosystème : Qonto, Pennylane, Ipaidthat, Tiime, Indy, Microsoft Excel (avec automatisation VBA), Power BI ou vos logiciels de facturation existants.',
+    a: 'Nous maîtrisons votre écosystème complet : SAP, Bloomberg, Power BI, Excel (VBA), SQL, Python, Power Automate, Qonto, iPaidThat, Indy, Henrri, Silae RH et Supabase.',
   },
   {
-    q: 'Comment déployer ce site sur Vercel ?',
-    a: 'Ce projet est un site React SPA moderne configuré avec Vite et un fichier vercel.json pré-intégré. Il vous suffit de connecter votre dépôt GitHub à Vercel ou de taper `vercel` en ligne de commande pour qu’il soit en ligne en moins de 60 secondes avec certificat SSL et CDN mondial.',
+    q: 'Intervenez-vous sur site ou à distance ?',
+    a: 'Nous intervenons à distance avec des points réguliers en visioconférence pour une réactivité maximale et des coûts maîtrisés, ainsi que sur site lors des étapes clés de cadrage ou de revues stratégiques.',
   },
 ];

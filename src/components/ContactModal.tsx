@@ -13,7 +13,7 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  selectedOfferId = 'daf',
+  selectedOfferId = 'pilotage',
   simulationData,
 }) => {
   const [fullName, setFullName] = useState('');
@@ -72,7 +72,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
             <div>
               <h3 className="text-lg font-black tracking-tight">Réserver un échange de 30 min (offert)</h3>
-              <p className="text-xs text-[#D9CDBB]">Échange direct & confidentiel avec Ted Enrick MBILONGO</p>
+              <p className="text-xs text-[#D9CDBB]">Échange direct & confidentiel avec l'équipe MATE Consulting</p>
             </div>
           </div>
           <button
@@ -93,7 +93,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </div>
               <h4 className="text-xl font-bold text-[#0E1E37]">Votre demande est bien reçue !</h4>
               <p className="text-xs text-slate-600 mt-2 max-w-sm mx-auto leading-relaxed">
-                Merci {fullName}. Ted Enrick MBILONGO vous contactera sous 24h ouvrées à l’adresse {email} pour convenir de l’échange.
+                Merci {fullName}. L'équipe MATE Consulting vous contactera sous 24h ouvrées à l’adresse {email} pour convenir de l’échange.
               </p>
               <button
                 onClick={() => {
@@ -225,7 +225,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     onChange={(e) => setNeed(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white outline-none"
                   >
-                    <option value="daf">Direction Financière (DAF) externalisée</option>
+                    <option value="pilotage">Externalisation de la gestion financière & pilotage</option>
                     <option value="tresorerie">Suivi de trésorerie glissante 12 semaines</option>
                     <option value="precompta">Précomptabilité opérationnelle & tri pièces</option>
                     <option value="modelisation">Matrices Excel VBA / Power BI sur-mesure</option>

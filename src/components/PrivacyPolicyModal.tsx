@@ -35,8 +35,8 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             <h4 className="font-bold text-sm text-[#0E1E37] mb-1.5">1. Responsable du traitement</h4>
             <p>
               Le responsable du traitement des données personnelles collectées sur ce site est :<br />
-              <strong>{COMPANY_INFO.founder.name}</strong>, Fondateur de MATE Consulting.<br />
-              Contact RGPD : {COMPANY_INFO.founder.name} ({COMPANY_INFO.founder.email}).
+              <strong>Direction MATE Consulting</strong>.<br />
+              Contact RGPD : Équipe MATE Consulting ({COMPANY_INFO.founder.email}).
             </p>
           </div>
 

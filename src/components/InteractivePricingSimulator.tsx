@@ -33,10 +33,10 @@ const COMPANY_PROFILES = [
   {
     id: 'tpe',
     title: 'TPE, Artisan & Commerce (1 à 9 salariés)',
-    tag: 'Formule phare',
+    tag: 'Forfait 20h+',
     recommendedOfferId: 'business',
     recommendedOfferName: 'Formule Business',
-    defaultHours: 16,
+    defaultHours: 20,
     rate: 40,
     typicalTasks: [
       'Tout le socle précomptable & liaison expert-comptable',
@@ -48,13 +48,13 @@ const COMPANY_PROFILES = [
   {
     id: 'pme',
     title: 'PME & Startup en Croissance (10+ salariés)',
-    tag: 'DAF Externalisé',
+    tag: 'Recommandé',
     recommendedOfferId: 'performance',
     recommendedOfferName: 'Formule Performance',
     defaultHours: 25,
     rate: 50,
     typicalTasks: [
-      'Accompagnement de Direction Financière',
+      'Pilotage financier externalisé & contrôle de gestion',
       'Budget prévisionnel annuel & contrôle des écarts',
       'Calcul du seuil de rentabilité (point mort) & marges',
       'Tableaux de bord KPIs de pilotage mensuel',
@@ -78,8 +78,8 @@ const COMPANY_PROFILES = [
 ];
 
 export const InteractivePricingSimulator: React.FC<SimulatorProps> = ({ onSendSimulation }) => {
-  const [selectedProfileId, setSelectedProfileId] = useState('tpe');
-  const [hours, setHours] = useState(16);
+  const [selectedProfileId, setSelectedProfileId] = useState('pme');
+  const [hours, setHours] = useState(25);
   const [currency, setCurrency] = useState<'EUR' | 'FCFA'>('EUR');
 
   const currentProfile = useMemo(() => {
@@ -241,7 +241,7 @@ export const InteractivePricingSimulator: React.FC<SimulatorProps> = ({ onSendSi
 
               <input
                 type="range"
-                min="5"
+                min="10"
                 max="40"
                 step="1"
                 value={hours}
@@ -250,9 +250,9 @@ export const InteractivePricingSimulator: React.FC<SimulatorProps> = ({ onSendSi
               />
 
               <div className="flex justify-between text-[11px] text-slate-500 font-mono mt-3">
-                <span className="hover:text-[#153258] cursor-pointer" onClick={() => setHours(5)}>5 h (Minimal)</span>
-                <span className="hover:text-[#153258] cursor-pointer font-bold text-[#153258]" onClick={() => setHours(16)}>16 h (TPE Croisière)</span>
-                <span className="hover:text-[#153258] cursor-pointer" onClick={() => setHours(40)}>40 h (DAF temps partagé)</span>
+                <span className="hover:text-[#153258] cursor-pointer" onClick={() => setHours(10)}>10 h (Minimal)</span>
+                <span className="hover:text-[#153258] cursor-pointer font-bold text-[#153258]" onClick={() => setHours(20)}>20 h (Croisière TPE)</span>
+                <span className="hover:text-[#153258] cursor-pointer" onClick={() => setHours(40)}>40 h (Pilotage avancé)</span>
               </div>
             </div>
 
@@ -319,7 +319,7 @@ export const InteractivePricingSimulator: React.FC<SimulatorProps> = ({ onSendSi
               <div className="flex items-center justify-between pb-2.5 border-b border-white/10">
                 <span className="text-slate-300 flex items-center gap-1.5">
                   <Euro className="w-3.5 h-3.5 text-[#E2672F]" />
-                  Économie vs DAF salarié
+                  Économie vs recrutement interne
                 </span>
                 <span className="font-extrabold text-[#E2672F] font-mono tabular-nums text-sm">
                   Jusqu’à -70 %

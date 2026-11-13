@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MateLogo } from './MateLogo';
-import { Phone, Calendar, Menu, X, Rocket, MessageSquare, Mail, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Phone, Calendar, Menu, X, MessageSquare, Mail, ShieldCheck, ChevronRight } from 'lucide-react';
 import { COMPANY_INFO } from '../data/mateData';
 import { trackEvent } from '../utils/analytics';
 
 interface NavbarProps {
   onOpenContact: (mode?: 'diagnostic' | 'message') => void;
-  onOpenDeployGuide: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,16 +35,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Left: Regulatory Trust & Geolocation */}
+          {/* Left: Regulatory Trust */}
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-slate-200">
               <ShieldCheck className="w-3.5 h-3.5 text-[#E2672F]" />
               <span className="font-semibold text-white">MATE Consulting</span>
               <span className="text-slate-400">· SIREN {COMPANY_INFO.siren}</span>
-            </span>
-            <span className="hidden md:inline text-slate-400" aria-hidden="true">|</span>
-            <span className="hidden md:inline text-slate-300">
-              France & Afrique francophone (Interventions à distance et sur site en Île-de-France)
             </span>
           </div>
 
@@ -71,14 +66,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               <MessageSquare className="w-3 h-3" />
               <span>WhatsApp Direct</span>
             </a>
-
-            <button
-              onClick={onOpenDeployGuide}
-              className="hidden lg:flex items-center gap-1 text-[#E2672F] hover:text-white transition-colors font-semibold cursor-pointer"
-            >
-              <Rocket className="w-3 h-3" />
-              <span>Vercel Ready</span>
-            </button>
           </div>
         </div>
       </div>
@@ -201,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-2.5 px-3 hover:bg-white rounded-xl transition-colors"
             >
-              <span>Nos 4 Services DAF & Précompta</span>
+              <span>Nos 4 Services Gestion & Précompta</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </a>
 
@@ -278,17 +265,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenDeployGuide
                   <span>WhatsApp</span>
                 </a>
               </div>
-
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenDeployGuide();
-                }}
-                className="w-full py-2 text-xs font-medium text-slate-600 hover:text-[#153258] flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <Rocket className="w-3.5 h-3.5 text-[#C04A1A]" />
-                <span>Guide de déploiement Vercel</span>
-              </button>
             </div>
           </div>
         </div>

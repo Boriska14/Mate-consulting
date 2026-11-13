@@ -14,14 +14,12 @@ import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
-import { VercelDeployGuideModal } from './components/VercelDeployGuideModal';
 
 export default function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const [deployGuideOpen, setDeployGuideOpen] = useState(false);
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
-  const [selectedOfferId, setSelectedOfferId] = useState<string>('daf');
+  const [selectedOfferId, setSelectedOfferId] = useState<string>('pilotage');
   const [simulationData, setSimulationData] = useState<any>(null);
 
   const handleOpenContact = (offerId?: string) => {
@@ -41,7 +39,7 @@ export default function App() {
     if (simData.recommendedOffer.toLowerCase().includes('essentiel')) {
       setSelectedOfferId('precompta');
     } else if (simData.recommendedOffer.toLowerCase().includes('performance')) {
-      setSelectedOfferId('daf');
+      setSelectedOfferId('pilotage');
     } else if (simData.recommendedOffer.toLowerCase().includes('optimisation')) {
       setSelectedOfferId('modelisation');
     } else {
@@ -55,18 +53,17 @@ export default function App() {
       {/* Top Bar */}
       <Navbar
         onOpenContact={handleOpenContact}
-        onOpenDeployGuide={() => setDeployGuideOpen(true)}
       />
 
       {/* Main Page Flow */}
       <main className="flex-1">
-        {/* 1. Hero Section (H1 DAF externalisé + Subtitle + Primary CTA) */}
+        {/* 1. Hero Section (H1 + Agile financial management externalization + Primary CTA) */}
         <Hero onOpenContact={handleOpenContact} />
 
         {/* 2. Tool & Ecosystem Bar */}
         <TrustBar />
 
-        {/* 3. Catalog of Services (DAF, Précompta, Trésorerie, Modélisation) */}
+        {/* 3. Catalog of Services (Pilotage, Précompta, Trésorerie, Outils décisionnels) */}
         <ServicesSection onSelectOffer={handleSelectOffer} />
 
         {/* 4. Section "Comment ça marche" (4 étapes) */}
@@ -94,7 +91,6 @@ export default function App() {
       {/* Footer with Legal & Privacy Modal Triggers */}
       <Footer
         onOpenContact={handleOpenContact}
-        onOpenDeployGuide={() => setDeployGuideOpen(true)}
         onOpenLegal={() => setLegalModalOpen(true)}
         onOpenPrivacy={() => setPrivacyModalOpen(true)}
       />
@@ -115,11 +111,6 @@ export default function App() {
       <PrivacyPolicyModal
         isOpen={privacyModalOpen}
         onClose={() => setPrivacyModalOpen(false)}
-      />
-
-      <VercelDeployGuideModal
-        isOpen={deployGuideOpen}
-        onClose={() => setDeployGuideOpen(false)}
       />
     </div>
   );

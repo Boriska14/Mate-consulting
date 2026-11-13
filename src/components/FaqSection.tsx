@@ -20,7 +20,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
     },
     {
       q: 'Quels sont les outils utilisés et compatibles avec mon entreprise ?',
-      a: 'Nous nous connectons directement à vos outils existants pour ne rien bouleverser : banques professionnelles (Qonto, Shine, banques traditionnelles), plateformes de précomptabilité et facturation (Ipaidthat, Pennylane, Tiime, Indy), ainsi que Microsoft Excel (conception de matrices VBA automatisées sans frais de licence) et Microsoft Power BI.',
+      a: 'Nous nous intégrons directement à votre écosystème : SAP, Qonto, iPaidThat, Indy, Henrri, Silae RH, banques professionnelles, ainsi que nos solutions d’analyse et d’automatisation (Excel VBA, Power BI, Power Automate, SQL, Python, Supabase) et les données financières Bloomberg.',
     },
     {
       q: 'Comment garantissez-vous la confidentialité de mes données financières ?',
@@ -36,7 +36,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
     },
     {
       q: 'Comment le devis et les tarifs sont-ils établis ?',
-      a: 'Nos tarifs sont transparents et facturés au temps utile passé (grille indicative : 25 € à 60 € HT / h selon la formule retenue, dès 125 € HT / mois). À l’issue du diagnostic de 30 minutes, nous dimensionnons le volume d’heures mensuel nécessaire selon le nombre de factures et la fréquence de reporting souhaitée. Vous recevez une proposition chiffrée claire, sans frais cachés.',
+      a: 'Nos tarifs sont transparents et basés sur une facturation horaire claire (grille indicative : 25 € à 60 € HT / h selon la formule retenue, dès 250 € HT / mois pour 10h). À l’issue du diagnostic de 30 minutes, nous dimensionnons le volume d’heures mensuel nécessaire selon le nombre de factures et la fréquence de reporting souhaitée. Vous recevez une proposition chiffrée claire, sans frais cachés.',
     },
   ];
 
@@ -99,7 +99,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenContact }) => {
           <div className="mt-12 text-center p-6 rounded-2xl bg-[#F6F1E9] border border-[#0E1E37]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-left text-xs sm:text-sm text-slate-700">
               <strong className="text-[#0E1E37] block font-bold">Vous avez une question spécifique sur votre trésorerie ?</strong>
-              <span>Échangez directement avec Ted Enrick MBILONGO lors d'un audit de 30 minutes sans engagement.</span>
+              <span>Échangez directement avec l'équipe MATE Consulting lors d'un audit de 30 minutes sans engagement.</span>
             </div>
             <button
               onClick={() => {

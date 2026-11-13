@@ -14,8 +14,8 @@ export const WhyUsComparison: React.FC = () => {
             Pourquoi choisir le modèle MATE Consulting ?
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[#153258]/80 leading-relaxed">
-            Un équilibre parfait : l’excellence technique d’une direction financière de haut niveau,
-            la flexibilité opérationnelle du freelance et l’absence totale de coûts fixes d’embauche.
+            Un équilibre parfait : l’excellence technique d’une gestion financière de haut niveau,
+            la flexibilité opérationnelle du format agile et l’absence totale de coûts fixes d’embauche.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export const WhyUsComparison: React.FC = () => {
                   Secrétaire Indépendante
                 </th>
                 <th className="py-4 px-6 text-sm font-semibold text-slate-700 w-1/5 bg-slate-50">
-                  Grand Cabinet / DAF Salarié
+                  Grand Cabinet / Salarié Interne
                 </th>
               </tr>
             </thead>

@@ -27,3 +27,33 @@ body {
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
+
+/* Smooth infinite marquee for ecosystem tools bar */
+@keyframes mate-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-mate-marquee {
+  display: flex;
+  width: max-content;
+  animation: mate-marquee 38s linear infinite;
+}
+
+.marquee-container:hover .animate-mate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mate-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}
+

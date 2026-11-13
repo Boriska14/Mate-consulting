@@ -7,7 +7,7 @@ interface ContactSectionProps {
   initialOffer?: string;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = 'daf' }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = 'pilotage' }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -70,7 +70,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
             </h2>
             
             <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-              Un échange confidentiel et sans engagement avec <strong>Ted Enrick MBILONGO</strong> pour
+              Un échange confidentiel et sans engagement avec <strong>l'équipe MATE Consulting</strong> pour
               auditer votre organisation financière, identifier vos leviers d’optimisation et estimer votre budget.
             </p>
 
@@ -179,7 +179,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
                   Votre demande a bien été transmise !
                 </h3>
                 <p className="text-sm text-slate-600 mt-2 max-w-md mx-auto leading-relaxed">
-                  Merci <strong>{formData.fullName}</strong>. Ted Enrick MBILONGO étudie votre demande
+                  Merci <strong>{formData.fullName}</strong>. L'équipe MATE Consulting étudie votre demande
                   et vous recontactera sous 24h ouvrées à l’adresse <strong>{formData.email}</strong> pour convenir de l'échange.
                 </p>
 
@@ -306,7 +306,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialOffer = '
                     onChange={(e) => setFormData({ ...formData, need: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs bg-white focus:ring-2 focus:ring-[#153258] focus:border-transparent outline-none"
                   >
-                    <option value="daf">Direction Financière (DAF) externalisée & pilotage</option>
+                    <option value="pilotage">Externalisation de la gestion financière & pilotage</option>
                     <option value="tresorerie">Suivi & prévisions de trésorerie glissante 12 semaines</option>
                     <option value="precompta">Précomptabilité opérationnelle & classement pièces</option>
                     <option value="modelisation">Création de matrices de gestion Excel VBA / Power BI</option>

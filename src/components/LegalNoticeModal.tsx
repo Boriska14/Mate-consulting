@@ -39,12 +39,11 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ isOpen, onCl
             <ul className="list-disc list-inside mt-1.5 space-y-1 text-slate-600">
               <li><strong>Raison sociale :</strong> MATE Consulting</li>
               <li><strong>Forme juridique :</strong> Entreprise Individuelle (EI)</li>
-              <li><strong>Numéro SIREN :</strong> {COMPANY_INFO.siren}</li>
-              <li><strong>Adresse du siège :</strong> Paris, France (RCS Paris)</li>
+              <li><strong>Immatriculation :</strong> SIREN {COMPANY_INFO.siren} (Entreprise Individuelle)</li>
               <li><strong>TVA :</strong> Franchise en base de TVA (art. 293 B du CGI)</li>
               <li><strong>Téléphone :</strong> {COMPANY_INFO.founder.phone}</li>
               <li><strong>Email :</strong> {COMPANY_INFO.founder.email}</li>
-              <li><strong>Directeur de la publication :</strong> {COMPANY_INFO.founder.name}</li>
+              <li><strong>Directeur de la publication :</strong> Direction MATE Consulting</li>
             </ul>
           </div>
 
